@@ -10,7 +10,7 @@
         <module name="productService" />
         <module name="userservice" />
       </profile>
-      <profile name="Annotation profile for EurekaServer" enabled="true">
+      <profile name="Annotation profile for ShippingService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,7 +18,10 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="EurekaServer" />
+        <module name="ShippingService" />
         <module name="ConfigServer" />
+        <module name="OrderService" />
+        <module name="PaymentService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,6 +33,9 @@
       <module name="ApiGateway" options="-parameters" />
       <module name="ConfigServer" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
+      <module name="OrderService" options="-parameters" />
+      <module name="PaymentService" options="-parameters" />
+      <module name="ShippingService" options="-parameters" />
       <module name="productService" options="-parameters" />
       <module name="userservice" options="-parameters" />
     </option>

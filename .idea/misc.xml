@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -13,6 +12,12 @@
         <option value="$PROJECT_DIR$/src/Microservices/ProductService/pom.xml" />
         <option value="$PROJECT_DIR$/src/Microservices/EurekaServer/pom.xml" />
         <option value="$PROJECT_DIR$/src/Microservices/Userservice/pom.xml" />
+        <option value="$PROJECT_DIR$/../OrderService/pom.xml" />
+        <option value="$PROJECT_DIR$/src/Microservices/SagaPattern/OrderService/pom.xml" />
+        <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
+        <option value="$PROJECT_DIR$/ShippingService/pom.xml" />
+        <option value="$PROJECT_DIR$/src/Microservices/SagaPattern/PaymentService/pom.xml" />
+        <option value="$PROJECT_DIR$/src/Microservices/SagaPattern/ShippingService/pom.xml" />
       </list>
     </option>
   </component>
