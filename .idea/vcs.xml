@@ -3,8 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/Microservices/ConfigServer" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/src/Microservices/SagaPattern/OrderService" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/src/Microservices/SagaPattern/PaymentService" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/src/Microservices/SagaPattern/ShippingService" vcs="Git" />
   </component>
 </project>
