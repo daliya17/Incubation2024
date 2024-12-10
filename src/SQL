@@ -1,0 +1,354 @@
+ACID
+A- Atomicity
+All or nothing- either all the operations are performed or none
+C- Consistency
+The database should be in a consistent state before and after the transaction
+I- Isolation
+The transaction should be isolated from other transactions
+D- Durability
+Once the transaction is committed, it should be permanent
+
+Normalization
+1NF- No repeating groups
+2NF- No partial dependencies
+3NF- No transitive
+BCNF- Boyce-Codd Normal Form- No partial dependencies
+
+SQL Joins
+Inner Join- Returns rows when there is a match in both tables
+Left Join- Returns all rows from the left table and the matched rows from the right table
+right join- Returns all rows from the right table and the matched rows from the left table
+Full join- Returns all rows when there is a match in one of the tables
+Self Join- Joining a table with itself
+Cross Join- Cartesian product of the two tables
+
+
+SQL Functions
+Aggregate Functions
+AVG()- Returns the average value
+ex- SELECT AVG(salary) FROM employees;
+COUNT()- Returns the number of rows
+ex- SELECT COUNT(*) FROM employees;
+MAX()- Returns the maximum value
+ex- SELECT MAX(salary) FROM employees;
+MIN()- Returns the minimum value
+ex- SELECT MIN(salary) FROM employees;
+SUM()- Returns the sum
+ex- SELECT SUM(salary) FROM employees;
+
+Scalar Functions
+UCASE()- Converts a field to upper case
+ex- SELECT UCASE(firstname) FROM employees;
+LCASE()- Converts a field to lower case
+ex- SELECT LCASE(firstname) FROM employees;
+MID()- Extract characters from a text field
+ex- SELECT MID(firstname, 2, 5) FROM employees;
+
+
+SQL Constraints
+NOT NULL- Ensures that a column cannot have a NULL value
+UNIQUE- Ensures that all values in a column are different
+PRIMARY KEY- A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY- Uniquely identifies a row/record in another table
+CHECK- Ensures that all values in a column satisfy a specific condition
+ex- CREATE TABLE employees (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CHECK (Age>=18)
+);
+UNIQUE KEY- Uniquely identifies each row in a table
+ex- CREATE TABLE employees (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    UNIQUE KEY (ID)
+);
+unique key vs primary key
+The PRIMARY KEY constraint uniquely identifies each record in a table and must contain UNIQUE values. A table can have only one PRIMARY KEY column. The UNIQUE KEY constraint also uniquely identifies each record in a table, but it does not have to contain UNIQUE values. A table can have multiple UNIQUE KEY columns.
+CANDIDATE KEY- A candidate key is a column or a set of columns that can uniquely identify any database record without referring to any other data. Each table may have one or more candidate keys. One of these candidate keys is selected as the primary key of the table.
+UNIque key vs candidate key
+A candidate key is a column or a set of columns that can uniquely identify any database record without referring to any other data. Each table may have one or more candidate keys. One of these candidate keys is selected as the primary key of the table. A UNIQUE KEY constraint also uniquely identifies each record in a table,
+ but it does not have to contain UNIQUE values. A table can have multiple UNIQUE KEY columns.
+
+ Composite Key- A composite key is a combination of two or more columns in a table that can be used to uniquely identify each record in the table when the columns are combined uniqueness is guaranteed, but when it taken individually it may not be unique.
+ super key- A super key is a group of single or multiple keys which identifies rows in a table. A super key can be a candidate key, primary key, or composite key. A super key is a set of columns or attributes that can be used to uniquely identify a record in a table.
+
+SQL Indexes
+Indexes are used to retrieve data from the database more quickly than otherwise. The users cannot see the indexes, they are just used to speed up searches/queries.
+Indexes can be created using one or more columns, providing the basis for both rapid random lookups and efficient access of ordered records.
+how to create an index
+CREATE INDEX index_name
+ON table_name (column1, column2, ...);
+how to drop an index
+DROP INDEX table_name.index_name;
+Types of Indexes
+Single Column Index- An index that is created on a single column
+ex- CREATE INDEX index_name
+ON table_name (column1);
+Unique Index- An index that does not allow any duplicate values to be inserted into the table
+ex- CREATE UNIQUE INDEX index_name
+ON table_name (column1);
+Composite Index- An index that is created on two or more columns
+ex- CREATE INDEX index_name
+ON table_name (column1, column2);
+Full-Text Index- An index that is created on a full-text column
+ex- CREATE FULLTEXT INDEX index_name
+ON table_name (column1);
+Spatial Index- An index that is created on a spatial column
+ex- CREATE SPATIAL INDEX index_name
+ON table_name (column1);
+Clustered Index- An index that sorts the data rows in the table on their key values. There can be only one clustered index per table
+ex- CREATE CLUSTERED INDEX index_name
+ON table_name (column1);
+Non-Clustered Index- An index that does not sort the physical data rows in the table. There can be multiple non-clustered indexes per table
+ex- CREATE NONCLUSTERED INDEX index_name
+ON table_name (column1);
+Unique Clustered Index- An index that does not allow any duplicate values to be inserted into the table and sorts the data rows in the table on their key values. There can be only one unique clustered index per table
+ex- CREATE UNIQUE CLUSTERED INDEX index_name
+ON table_name (column1);
+Unique Non-Clustered Index- An index that does not allow any duplicate values to be inserted into the table and does not sort the physical data rows in the table. There can be multiple unique non-clustered indexes per table
+
+Idea of Indexing in SQL
+An index is a performance-tuning method of allowing faster retrieval of records.
+An index creates an entry for each value that appears in the indexed columns.
+ The index stores the data in a structure that allows SQL to find the values quickly and efficiently.
+ Indexes are used to retrieve data from the database more quickly than otherwise.
+ How are indexes stored in SQL?
+Indexes are stored in a data structure that allows SQL to find the values quickly and efficiently.
+Indexes are stored in a B-tree data structure.
+
+give an example of how indexes are stored in SQL
+Indexes are stored in a B-tree data structure.
+A B-tree is a data structure that stores data in a sorted order.
+The B-tree structure allows for efficient searching, insertion, and deletion of data.
+The B-tree structure is balanced, meaning that the height of the tree is kept to a minimum, which allows for fast access to the data.
+The B-tree structure is used to store indexes in SQL databases, allowing for fast retrieval of data.
+
+SQL Transactions
+A transaction is a single unit of work that is performed on a database.
+A transaction can consist of one or more SQL statements that are executed as a single unit.
+A transaction is either committed or rolled back.
+A transaction is committed when all the SQL statements in the transaction are executed successfully.
+A transaction is rolled back when any of the SQL statements in the transaction fail.
+
+SQL subqueries
+A subquery is a query that is nested inside another query.
+A subquery can be used in the SELECT, INSERT, UPDATE, and DELETE statements.
+A subquery can return a single value, a single row, multiple rows, or multiple columns.
+A subquery can be used to filter the results of the main query, join tables, or perform calculations.
+Example of a subquery
+SELECT column1, column2
+FROM table1
+WHERE column1 IN (SELECT column1
+FROM table2
+WHERE column2 = 'value');
+
+
+SQL Views
+A view is a virtual table that is based on the result of a SELECT statement.
+A view is created by combining data from one or more tables using a SELECT statement.
+A view is stored in the database and can be queried like a table.
+A view can be used to simplify complex queries, hide the complexity of the underlying tables, and provide a consistent interface to the data.
+
+Create a database about a Order Management System
+The tables are as follows:
+Customers- Contains information about the customers
+Orders- Contains information about the orders
+OrderDetails- Contains information about the order details
+Products- Contains information about the products
+Employees- Contains information about the employees
+Suppliers- Contains information about the suppliers
+Categories- Contains information about the categories of products
+The relationships between the tables are as follows:
+Customers-Orders: One-to-Many
+Orders-OrderDetails: One-to-Many
+OrderDetails-Products: One-to-One
+Employees-Orders: One-to-Many
+Suppliers-Products: One-to-Many
+Categories-Products: One-to-Many
+
+SQL queries for the Order Management System database
+Customers table:
+CREATE TABLE Customers (
+    CustomerID int PRIMARY KEY,
+    CustomerName varchar(255),
+    Address varchar(255),
+    City varchar(255),
+    Country varchar(255)
+);
+Orders table:
+CREATE TABLE Orders (
+    OrderID int PRIMARY KEY,
+    CustomerID int,
+    OrderDate date,
+    ShipDate date,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+OrderDetails table:
+CREATE TABLE OrderDetails (
+    OrderDetailID int PRIMARY KEY,
+    OrderID int,
+    ProductID int,
+    Quantity int,
+    Price decimal(10,2),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+Products table:
+CREATE TABLE Products (
+    ProductID int PRIMARY KEY,
+    ProductName varchar(255),
+    CategoryID int,
+    SupplierID int,
+    Price decimal(10,2),
+    FOREIGN KEY (CategoryID) REFERENCES
+    Categories(CategoryID),
+    FOREIGN KEY (SupplierID) REFERENCES
+    Suppliers(SupplierID)
+);
+
+Employees table:
+CREATE TABLE Employees (
+    EmployeeID int PRIMARY KEY,
+    EmployeeName varchar(255),
+    Department varchar(255),
+    Salary decimal(10,2)
+);
+
+Suppliers table:
+CREATE TABLE Suppliers (
+    SupplierID int PRIMARY KEY,
+    SupplierName varchar(255),
+    Address varchar(255),
+    City varchar(255),
+    Country varchar(255)
+);
+
+Categories table:
+CREATE TABLE Categories (
+    CategoryID int PRIMARY KEY,
+    CategoryName varchar(255)
+);
+
+
+Some example queries for the Order Management System database:
+1. List all the customers who have placed an order.
+SELECT * FROM Customers
+WHERE CustomerID IN (SELECT CustomerID FROM Orders);
+
+2. List all the orders placed by a specific customer.
+SELECT * FROM Orders
+WHERE CustomerID = (SELECT CustomerID FROM Customers
+WHERE CustomerName = 'John Doe');
+
+3. List all the products ordered by a specific customer.
+select * from Products
+where ProductID in (select ProductID from OrderDetails
+where OrderID in (select OrderID from Orders
+where CustomerID in (select CustomerID from Customers
+where CustomerName = 'John Doe')));
+
+// using joins
+SELECT Products.ProductName
+FROM Products
+JOIN OrderDetails ON Products.ProductID = OrderDetails.ProductID
+JOIN Orders ON OrderDetails.OrderID = Orders.OrderID
+JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+WHERE Customers.CustomerName = 'John Doe';
+
+
+4. List all the orders placed on a specific date.
+SELECT * FROM Orders
+WHERE OrderDate = '2022-01-01';
+
+5. List all the orders that have not been shipped.
+SELECT * FROM Orders
+WHERE ShipDate IS NULL;
+
+6. List all the employees who have placed an order.
+SELECT * FROM Employees
+WHERE EmployeeID IN (SELECT EmployeeID FROM Orders);
+
+7. List all the suppliers who supply a specific product.
+SELECT * FROM Suppliers
+WHERE SupplierID IN (SELECT SupplierID FROM Products
+WHERE ProductName = 'Product A');
+
+8. List all the categories of products.
+SELECT * FROM Categories;
+
+9. List all the products in a specific category.
+SELECT * FROM Products
+WHERE CategoryID = (SELECT CategoryID FROM Categories
+WHERE CategoryName = 'Category A');
+
+10. List all the products supplied by a specific supplier.
+SELECT * FROM Products
+WHERE SupplierID = (SELECT SupplierID FROM Suppliers
+WHERE SupplierName = 'Supplier A');
+
+11.find the total value of orders placed by each customer
+SELECT Customers.CustomerID,Orders.OrderID,Customers.CustomerName,OrderDetails.Quantity, Products.Price, sum(OrderDetails.Quantity* Products.Price) as total_amount
+from OrderDetails
+join Orders on Orders.OrderID=OrderDetails.OrderID
+join Customers on Customers.CustomerID=Orders.CustomerID
+join Products on OrderDetails.ProductID = Products.ProductID
+group by Customers.CustomerName
+
+12. Find the total revenue generated from each category
+SELECT sum(o.Quantity*p.Price) as total_revenue, c.CategoryID, c.CategoryName FROM OrderDetails o
+join Products p on p.ProductID = o.ProductID
+join Categories c on c.CategoryID=p.CategoryID
+group by c.CategoryID
+
+13.Find the top 3 employees who have processed the highest total revenue
+SELECT e.EmployeeID,e.FirstName,sum(p.Price*o.Quantity) as total_revenue FROM OrderDetails o
+join Orders ord on ord.OrderID=o.OrderID
+join Products p on p.ProductID=o.ProductID
+join Employees e on e.EmployeeID=ord.EmployeeID
+group by e.EmployeeID
+order by total_revenue desc limit 3;
+
+14.Find the total number of products ordered by each employee
+SELECT e.EmployeeID, e.firstName,SUM(o.Quantity) AS total_orders FROM OrderDetails o
+JOIN Orders ord ON ord.OrderID = o.OrderID
+JOIN  Employees e ON e.EmployeeID = ord.EmployeeID
+GROUP BY e.EmployeeID, e.firstName;
+
+
+15.Calculate the average number of products ordered in each order
+SELECT OrderID,AVG(Quantity) AS avg_products_ordered
+FROM OrderDetails GROUP BY OrderID;
+
+SQL Triggers
+A trigger is a set of SQL statements that are automatically executed when a specified event occurs.
+Triggers can be used to enforce business rules, perform data validation, and maintain data integrity.
+Triggers can be defined to execute before or after an INSERT, UPDATE, or DELETE operation on a table.
+
+Types of Triggers
+BEFORE Trigger- A trigger that is executed before an INSERT, UPDATE, or DELETE operation on a table.
+AFTER Trigger- A trigger that is executed after an INSERT, UPDATE, or DELETE operation on a table.
+INSTEAD OF Trigger- A trigger that is executed instead of an INSERT, UPDATE, or DELETE operation on a view.
+Example of a Trigger
+CREATE TRIGGER trigger_name
+BEFORE INSERT ON table_name
+FOR EACH ROW
+BEGIN
+    -- Trigger logic here
+END;
+
+SQL Stored Procedures
+A stored procedure is a set of SQL statements that are stored in the database and can be executed by calling the procedure name.
+Stored procedures can be used to encapsulate complex SQL logic, improve performance, and provide a consistent interface to the database.
+
+SQL Functions
+A function is a set of SQL statements that can be called with parameters and returns a value.
+Functions can be used to perform calculations, manipulate data, and provide reusable logic in SQL queries.
+
+
+

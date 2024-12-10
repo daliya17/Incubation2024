@@ -1,0 +1,28 @@
+Microservices : Moder microservices architecture with Spring Cloud
+Microservices are a software development technique that structures an
+application as a collection of loosely coupled services.
+Each service is self-contained and can be deployed independently.
+Microservices architecture allows for greater flexibility, scalability,
+and resilience compared to monolithic applications.
+
+Spring Cloud is a set of tools and libraries that can be used to build a cloud-native application.
+It provides features such as service discovery, configuration management,
+circuit breakers, and distributed tracing that are essential for building a microservices architecture.
+
+Some of the key components of Spring Cloud are:
+1. Eureka: Service discovery and registration - Eureka is a service registry that allows services to register themselves and discover other services.
+2. Ribbon: Client-side load balancing - Ribbon is a client-side load balancer that distributes requests across multiple instances of a service.
+3. Hystrix: Circuit breaker - Hystrix is a circuit breaker that prevents cascading failures in a distributed system.
+4. Zuul: API gateway - Zuul is an API gateway that provides a single entry point for all requests to the microservices.
+5. Config Server: Externalized configuration - Config Server is a centralized configuration server that allows services to retrieve their configuration from a central location.
+
+By using Spring Cloud, developers can build scalable and resilient microservices applications that can easily adapt to changing requirements and environments.
+
+Different microservices architecture patterns:
+1. API Gateway: An API gateway is a single entry point for all requests to the microservices. It provides a unified interface for clients to access the various services in the system.
+2. Service Discovery: Service discovery is a mechanism that allows services to register themselves and discover other services in the system. This enables dynamic scaling and load balancing of services.
+3. Circuit Breaker: A circuit breaker is a design pattern that prevents cascading failures in a distributed system. It monitors the health of services and can temporarily block requests to a failing service.
+4. Event Sourcing: Event sourcing is a pattern where the state of an application is determined by a sequence of events. This allows for easy auditing, replaying of events, and building of complex business logic.
+5. CQRS: Command Query Responsibility Segregation (CQRS) is a pattern where the read and write operations of an application are separated. This allows for better scalability and performance by optimizing the read and write paths.
+6. Saga Pattern: The saga pattern is a way to manage distributed transactions in a microservices architecture. It breaks down a complex transaction into a series of smaller, independent transactions that can be rolled back if necessary.
+

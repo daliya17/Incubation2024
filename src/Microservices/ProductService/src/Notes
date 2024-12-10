@@ -1,0 +1,110 @@
+REST - representation of the resource
+Rest stands for representational state transfer.
+It is a software architectural style that defines a set of constraints to be used for creating web services.
+ Web services that conform to the REST architectural style, or RESTful web services,
+ provide interoperability between computer systems on the internet. REST-compliant web services allow requesting systems to access and manipulate textual representations
+  of web resources by using a uniform and predefined set of stateless operations.
+   Other kinds of web services, such as SOAP web services, expose their own arbitrary sets of operations.
+
+rest apis should be stateless, meaning that all state is handled on the client side, it should be designed around resources, which are any kind of object, data, or service that can be accessed by the client.
+
+MVC - Model View Controller
+Model - represents the data, the business logic, and the rules of the application.
+View - represents the presentation layer of the application, it is the UI.
+Controller - acts as an interface between Model and View, it controls the data flow into model object and updates the view whenever data changes.
+
+dispatcher servlet - The DispatcherServlet is the front controller in Spring MVC. It is responsible for intercepting every request and then dispatching the request to the appropriate controller.
+
+Controller advice - ControllerAdvice is an annotation provided by Spring allowing you to write global code that can be applied to a wide range of controllers —
+varying from all controllers to a chosen package or even a specific annotation.
+
+JPA: Java Persistence API
+JPA is a Java specification for accessing, persisting, and managing data between Java objects/classes and a relational database.
+It is part of the Java EE framework and defines a set of interfaces and methods that provide a standard way of accessing a relational database from Java programs.
+JPA is a specification, and Hibernate is one of the implementations of this specification.
+
+hibernate - Hibernate is an open-source, non-invasive, lightweight, ORM (Object Relational Mapping) tool.
+ It is a powerful, high-performance Object-Relational Persistence and Query service for any Java Application.
+    Hibernate maps Java classes to database tables and from Java data types to SQL data types and relieves the developer from 95% of common data persistence-related programming tasks.
+
+ Hibernate is a framework that provides a way to map object-oriented domain models to relational databases.
+It is an ORM (Object-Relational Mapping) tool that provides a framework to map an object-oriented domain model to a relational database.
+In spring boot, hibernate is used to perform database operations.
+
+Spring Data JPA - Spring Data JPA is a part of the larger Spring Data family. It makes it easier to build Spring-powered applications that use data access technologies.
+It provides a way to use JPA to store data in a relational database. It is a part of the Spring Data project that makes it easy to implement JPA-based repositories.
+spring data jpa uses hibernate as the default implementation.
+
+HQL - Hibernate Query Language
+HQL is an object-oriented query language, similar to SQL, but instead of operating on tables and columns, HQL works with persistent objects and their properties.
+HQL queries are translated by Hibernate into conventional SQL queries, which in turn perform actions on a database.
+example of hql query: List<Person> result = session.createQuery("FROM Person WHERE name = :name", Person.class)
+                                                   .setParameter("name", "John")
+                                                   .getResultList();
+
+persistence context - The persistence context is a set of managed entities, which are instances of entity classes that are currently being managed by the EntityManager.
+The persistence context is a short-lived, transaction-scoped context that stores a map of entities that are currently in the scope of a particular EntityManager.
+The persistence context is used to track changes to entities and to ensure that changes are persisted to the database when the transaction is committed.
+
+
+Inheritance in Hibernate- Inheritance in Hibernate is a mechanism to map a Java class to a database table. It is a way to create a new class using the properties of an existing class.
+There are four types of inheritance strategies in Hibernate:
+1. Single Table Inheritance: In this strategy, all the classes in the hierarchy are mapped to a single table.
+2. Table Per Class Inheritance: In this strategy, each class in the hierarchy is mapped to its own table.
+3. Joined Table Inheritance: In this strategy, each class in the hierarchy is mapped to its own table, and the tables are linked using foreign key relationships.
+4. Mapped Superclass Inheritance: In this strategy, the superclass is not mapped to a table, and the subclasses are mapped to their own tables.
+
+
+exceptions in spring boot - Spring Boot provides a set of default error handling mechanisms that can be customized to suit the needs of the application.
+Some of the common exceptions in Spring Boot are:
+1. DataAccessException: This exception is thrown when an error occurs while accessing the database.
+2. IllegalArgumentException: This exception is thrown when an illegal argument is passed to a method.
+3. IllegalStateException: This exception is thrown when the application is in an illegal state.
+4. NullPointerException: This exception is thrown when a null value is encountered.
+5. ResourceNotFoundException: This exception is thrown when a requested resource is not found.
+6. MethodArgumentNotValidException: This exception is thrown when an argument annotated with @Valid fails validation.
+
+
+Handling exceptions in spring boot - Spring Boot provides several ways to handle exceptions in an application:
+1. Using @ExceptionHandler: You can use the @ExceptionHandler annotation to handle exceptions at the controller level.
+2. Using @ControllerAdvice: You can use the @ControllerAdvice annotation to define global exception handling for all controllers.
+3. Using @ResponseStatus: You can use the @ResponseStatus annotation to define the HTTP status code to be returned when an exception occurs.
+4. Using ResponseEntity: You can use the ResponseEntity class to return a custom response entity with the desired status code and message.
+
+
+Difference between @Component, @Service, @Repository, and @Controller annotations in Spring - In Spring, @Component, @Service, @Repository, and @Controller are all specialized versions of the @Component annotation.
+
+difference between put and patch - PUT is used to update an existing resource, while PATCH is used to update a part of an existing resource.
+
+RestTemplate - RestTemplate is a class provided by Spring that makes it easy to make HTTP requests to a RESTful web service.
+It provides methods for making GET, POST, PUT, DELETE, and other types of HTTP requests.
+RestTemplate can be used to consume RESTful web services in a Spring Boot application.
+Example of using RestTemplate to make a GET request:
+RestTemplate restTemplate = new RestTemplate();
+String response = restTemplate.getForObject("http://example.com/api/resource", String.class);
+post request:
+RestTemplate restTemplate = new RestTemplate();
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.APPLICATION_JSON);
+HttpEntity<String> request = new HttpEntity<>("{\"name\":\"John\"}", headers);
+ResponseEntity<String> response = restTemplate.postForEntity("http://example.com/api/resource", request, String.class);
+delete request:
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.delete("http://example.com/api/resource/{id}", 1);
+
+Spring boot actuator - Spring Boot Actuator is a set of production-ready features that can be used to monitor and manage a Spring Boot application.
+It provides endpoints that can be used to monitor the health, metrics, and other aspects of the application.
+Some of the common endpoints provided by Spring Boot Actuator are:
+1. /actuator/health: This endpoint is used to check the health of the application - whether it is up and running or not, it is a get request.
+2. /actuator/metrics: This endpoint is used to view metrics related to the application - it is a get request.
+3. /actuator/info: This endpoint is used to view information about the application.
+4. /actuator/env: This endpoint is used to view the environment properties of the application.
+5. /actuator/loggers: This endpoint is used to view and configure the logging levels of the application.
+
+
+Swagger - Swagger is a tool that can be used to document and test RESTful web services.
+Swagger provides a user-friendly interface that allows developers to view and interact with the API endpoints.
+It generates documentation for the API based on the annotations in the code.
+Swagger can be integrated with a Spring Boot application to automatically generate API documentation.
+To integrate Swagger with a Spring Boot application, you can add the springfox-swagger2 and springfox-swagger-ui dependencies to the pom.xml file and configure the Swagger configuration class.
+

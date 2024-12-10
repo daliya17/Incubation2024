@@ -1,0 +1,45 @@
+Completable future is used for asynchronous programming in Java. Asynchronous programming is a form of parallel programming that allows a unit of work to run separately from the main application thread. When the work is complete, it notifies the main thread (as well as any other thread that is interested) that it is done. The main thread can then continue to work on other things.
+CompletableFuture is a class in Java that represents a future result of an asynchronous computation.
+It is used to perform asynchronous operations and obtain the result when it is ready.
+CompletableFuture provides a way to write non-blocking, asynchronous code in a more readable and maintainable way.
+CompletableFuture can be used to perform tasks asynchronously and combine the results of multiple tasks.
+
+difference between CompletableFuture and Future is that CompletableFuture is an extension of the Future interface that provides additional methods for handling asynchronous computations.
+CompletableFuture provides a more flexible and powerful way to work with asynchronous computations compared to the Future interface.
+completableFuture can be used to perform tasks asynchronously and combine the results of multiple tasks.
+CompletableFuture can be used to handle exceptions that occur during the execution of a task and provide a default value or result.
+completable future can be completed manually by calling the complete() method or completed exceptionally by calling the completeExceptionally() method.
+
+SupplyAsync() method:
+The supplyAsync() method is used to create a CompletableFuture that will asynchronously execute the given Supplier and return the result of the computation as a CompletableFuture.
+runAsync() method:
+The runAsync() method is used to create a CompletableFuture that will asynchronously execute the given Runnable and return a CompletableFuture that is completed when the computation is finished.
+difference between supplyAsync() and runAsync() is that supplyAsync() takes a Supplier as an argument
+and returns a CompletableFuture that will contain the result of the computation,
+while runAsync() takes a Runnable as an argument and returns a CompletableFuture<Void>
+
+CompletableFuture methods:
+thenApply(): The thenApply() method is used to apply a function to the result of a CompletableFuture and return a new CompletableFuture with the result of the function.
+thenAccept(): The thenAccept() method is used to consume the result of a CompletableFuture and perform an action with the result.
+
+thenRun(): The thenRun() method is used to perform an action after the completion of a CompletableFuture, without consuming the result.
+allOf(): The allOf() method is used to combine multiple CompletableFutures into a single CompletableFuture that completes when all of the input CompletableFutures are completed.
+anyOf(): The anyOf() method is used to combine multiple CompletableFutures into a single CompletableFuture that completes when any of the input CompletableFutures are completed.
+
+CompletableFuture exception handling:
+handle(): The handle() method is used to handle exceptions that occur during the execution of a CompletableFuture and return a new CompletableFuture with the result of the handling function.
+exceptionally(): The exceptionally() method is used to handle exceptions that occur during the execution of a CompletableFuture and return a new CompletableFuture with a default value or result.
+
+CompletableFuture chaining:
+thenCompose(): The thenCompose() method is used to chain multiple CompletableFutures together, where the result of one CompletableFuture is used as the input to another CompletableFuture.
+thenCombine(): The thenCombine() method is used to combine the results of two CompletableFutures into a single CompletableFuture that contains the combined result.
+thenAcceptBoth(): The thenAcceptBoth() method is used to combine the results of two CompletableFutures and perform an action with the combined result.
+
+
+how does complete method work in CompletableFuture:
+The complete() method is used to manually complete a CompletableFuture with a specific value.
+When the complete() method is called, the CompletableFuture is completed with the specified value, and any dependent CompletableFutures are notified of the completion.
+If the CompletableFuture is already completed, the complete() method has no effect.
+if the CompletableFuture is not completed, the complete() method completes the CompletableFuture with the specified value and notifies any dependent CompletableFutures of the completion.
+how dooes calling complete() method affect the CompletableFuture:
+calling the complete() method on a CompletableFuture completes the CompletableFuture with the specified value and notifies any dependent CompletableFutures of the completion.

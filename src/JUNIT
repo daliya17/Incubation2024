@@ -1,0 +1,97 @@
+Junit is for unit testing. It is a framework for writing and running tests. It is an instance of the xUnit architecture for unit testing frameworks.
+
+Important things to remember about Junit5:
+@Test: The @Test annotation tells JUnit that the public void method to which it is attached can be run as a test case.
+@BeforeEach: The @BeforeEach annotation is used on a method containing the code that needs to run before each test case.
+@AfterEach: The @AfterEach annotation is used on a method containing the code that needs to run after each test case.
+@BeforeAll: The @BeforeAll annotation is used on a method containing the code that needs to run before all test cases.
+@AfterAll: The @AfterAll annotation is used on a method containing the code that needs to run after all test cases.
+@DisplayName: The @DisplayName annotation is used to declare a custom display name for the test class or test method.
+@Disabled: The @Disabled annotation is used to disable a test class or test method.
+@Tag: The @Tag annotation is used to declare tags for filtering tests.
+@ExtendWith: The @ExtendWith annotation is used to register extensions declaratively, meaning that extensions can be registered by annotating test classes or test methods,
+extending the test instance, or registering extensions programmatically.
+
+example of Junit5 test case:
+void testAdd() {
+    int num = 5;
+    assertEquals(10, num + 5);
+}
+example of extend with:
+@ExtendWith(TimingExtension.class)
+class TestTimingExtension {
+    @Test
+    void sleep20ms() throws InterruptedException {
+        Thread.sleep(20);
+    }
+}
+
+what happens in this example is that the TimingExtension class is registered with the test class TestTimingExtension.
+The TimingExtension class is an extension that records the time taken to execute each test method and reports it to the console.
+so when the test method sleep20ms is executed, the TimingExtension class records the time taken to execute the test method and reports it to the console.
+
+@RepeatedTest: The @RepeatedTest annotation is used to signal that the annotated method is a test template method that should be repeated a specified number of times.
+example:
+@RepeatedTest(5)
+void repeatedTest() {
+    // the test logic
+}
+this test logic will be repeated 5 times.
+
+@ParameterizedTest: The @ParameterizedTest annotation is used to signal that the annotated method is a test template method that should be repeated with the arguments provided.
+example:
+@ParameterizedTest
+@ValueSource(strings = { "Hello", "World" })
+void testWithStringParameter(String argument) {
+    assertNotNull(argument);
+}
+
+@InjectMocks: The @InjectMocks annotation is used to create an instance of the class and inject the @Mock or @Spy annotated mocks into it.
+@Mock: The @Mock annotation is used to create a mock implementation for the class or interface.
+@Spy: The @Spy annotation is used to create a spy implementation for the class or interface.
+differnce between @Mock and @Spy is that @Mock creates a mock implementation for the class or interface, while @Spy creates a spy implementation for the class or interface.
+@Spy spies on the real object, while @Mock does not.
+
+unit testing in spring boot:
+@SpringBootTest: The @SpringBootTest annotation is used to start up the Spring application context for the test.
+The @SpringBootTest annotation can be placed at the class level or method level.
+@ExtendWith(SpringExtension.class): The @ExtendWith(SpringExtension.class) annotation is used to integrate the Spring TestContext Framework into JUnit 5.
+@AutoConfigureMockMvc: The @AutoConfigureMockMvc annotation is used to automatically configure the MockMvc instance.
+@MockBean: The @MockBean annotation is used to add mock objects to the Spring application context.
+
+@WebMvcTest: The @WebMvcTest annotation is used to test the controller layer of the application.
+automatically configures the Spring MVC infrastructure and scans for @Controller classes.
+It is a transactional test that rolls back the transaction at the end of each test method.
+
+@DataJpaTest: The @DataJpaTest annotation is used to test the persistence layer of the application.
+automatically configures an in-memory database and scans for @Entity classes and Spring Data repositories.
+It is a transactional test that rolls back the transaction at the end of each test method.
+
+@RestClientTest: The @RestClientTest annotation is used to test the REST client of the application.
+@AutoConfigureTestDatabase: The @AutoConfigureTestDatabase annotation is used to automatically configure the test database.
+@Sql: The @Sql annotation is used to define the SQL scripts to be executed before or after the test method.
+@ActiveProfiles: The @ActiveProfiles annotation is used to activate profiles for the test, which can be used to load different application properties.
+
+
+@Runwith(SpringRunner.class): The @RunWith(SpringRunner.class) annotation is used to run the test with the SpringRunner class.
+example of unit testing in spring boot:
+@SpringBootTest
+@AutoConfigureMockMvc
+class UserControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private UserService userService;
+
+    @Test
+    void testGetUserById() throws Exception {
+        User user = new User(1, "John Doe");
+        when(userService.getUserById(1)).thenReturn(user);
+        }
+        }
+// Integration testing
+Integration testing is the phase in software testing in which individual software modules are combined and tested as a group.
+Integration testing is performed after unit testing and before system testing.
+
+

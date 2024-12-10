@@ -1,0 +1,20 @@
+Oauth - an open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords.
+Oauth 2.0 - is the industry-standard protocol for authorization. OAuth 2.0 focuses on client developer simplicity while providing specific authorization flows for web applications,
+desktop applications, mobile phones, and living room devices.
+
+
+client - a piece of computer hardware or software that accesses a service made available by a server.
+Authentication server - a server that authenticates the user.
+Resource server - a server that holds the protected resources.
+Authorization server - a server that issues access tokens.
+user-agent - the user's device used to interact with the authorization server.
+
+Flow- client asks for permission from authorization server, the authorization server asks the user for permission, the user gives the authorization server permission,
+then the authorization server sends the client an authorization code, the client sends the authorization code to the authorization server, the authorization server sends the client an access token,
+ the client sends the access token to the resource server, the resource server sends the client the protected resources.
+
+
+ Why not only token?
+ Token is a string that represents an authorization granted by the resource owner to the client. The token specifies what actions the client can take and for how long.
+ 
+

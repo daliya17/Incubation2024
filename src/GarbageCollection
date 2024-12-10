@@ -1,0 +1,68 @@
+Garbage Collectrion is a process of reclaiming the runtime unused memory automatically. In other words, it is a way to destroy the unused objects.
+To do so, we were using free() function in C language and delete() in C++. But, in Java, it is performed automatically. So, Java provides better memory management.
+Advantages of Garbage Collection
+It makes java memory efficient because garbage collector removes the unreferenced objects from heap memory.
+It is automatically done by the garbage collector(a part of JVM) so we don't need to make extra efforts.
+Disadvantages of Garbage Collection
+It makes the system slow.
+
+Types of References in Java
+There are 4 types of references in Java:
+1. Strong Reference - Strong reference is the most common type of reference in Java. Any object which has an active strong reference is not eligible for garbage collection.
+Strong reference is created when we create an object using new keyword. In the below example, obj is a strong reference.
+String obj = new String("GeeksforGeeks");
+2. Soft Reference - Soft reference is used to create an object that is not mandatory for the application. If the JVM is running out of memory, it can remove the soft reference to make space for other objects.
+SoftReference<String> obj = new SoftReference<String>(new String("GeeksforGeeks"));
+Used in memory-sensitive caches, where we can use the object if it is available in the memory, otherwise we can create a new object.
+3. Weak Reference - Weak reference is used to create an object that is not mandatory for the application. If the JVM finds the weak reference, it removes it and reclaims the memory.
+WeakReference<String> obj = new WeakReference<String>(new String("GeeksforGeeks"));
+Used in WeakHashMap to create a memory-sensitive map.
+It will be garbage collected in the next garbage collection cycle.
+4. Phantom Reference - Phantom reference is used to create an object that is not mandatory for the application. If the JVM finds the phantom reference, it removes it and reclaims the memory.
+PhantomReference<String> obj = new PhantomReference<String>(new String("GeeksforGeeks"));
+It is used to clean up the resources before the object is garbage collected.
+It is used in the finalization process.
+It has a reference queue associated with it.the objects are not garbage collected immediately after the reference is removed. They are put in a queue and garbage collected in the next garbage collection cycle.
+
+Garbage Collection Algorithms
+There are 4 types of garbage collection algorithms in Java:
+1. Serial Garbage Collector - It is a single-threaded garbage collector that uses a single thread to perform all garbage collection work. It is best suited for single-threaded environments.
+2. Parallel Garbage Collector - It is a multi-threaded garbage collector that uses multiple threads to perform garbage collection work. It is best suited for multi-threaded environments.
+3. CMS Garbage Collector - CMS stands for Concurrent Mark-Sweep. It is a garbage collector that uses multiple threads to perform garbage collection work. It is best suited for applications that require low pause times.
+Pause time is the time during which the application is stopped while garbage collection is performed.
+4. G1 Garbage Collector - G1 stands for Garbage First. It is a garbage collector that uses multiple threads to perform garbage collection work. It is best suited for applications that require low pause times and high throughput.
+  It divides the heap into multiple regions and performs garbage collection on the regions with the most garbage first.
+  It is designed to provide better performance and lower pause times compared to other garbage collectors.
+  Throughput is the amount of work done in a given amount of time, usually measured in operations per second.
+  High throughput means that the garbage collector can process a large amount of garbage in a short amount of time.
+  Low pause times mean that the application is stopped for a short amount of time while garbage collection is performed.
+  The G1 garbage collector is designed to provide high throughput and low pause times by dividing the heap into multiple regions and performing garbage collection on the regions with the most garbage first.
+  Difference between G1 and CMS garbage collector is that G1 garbage collector divides the heap into multiple regions and performs garbage collection on the regions with the most garbage first,
+  while CMS garbage collector uses multiple threads to perform garbage collection work and is best suited for applications that require low pause times.
+
+Java 8 introduced a new garbage collector called the G1 garbage collector.
+Java 9 introduced a new garbage collector called the Z garbage collector. It is designed to provide better performance and lower pause times compared to other garbage collectors.
+Difference between G1 and Z garbage collector is that G1 garbage collector divides the heap into multiple regions and performs garbage collection on the regions with the most garbage first,
+Z garbage collector is designed to provide better performance and lower pause times compared to other garbage collectors.  \
+
+Java 11 introduced a new garbage collector called the Epsilon garbage collector. It is a no-op garbage collector that does not perform any garbage collection.
+Java 14 introduced a new garbage collector called the Shenandoah garbage collector. It is designed to provide better performance and lower pause times compared to other garbage collectors.
+
+Generational Garbage Collection
+Generational garbage collection is a type of garbage collection algorithm that divides the heap into multiple generations and performs garbage collection on each generation separately.
+The heap is divided into two generations: the young generation and the old generation.
+The young generation is where new objects are allocated, and the old generation is where long-lived objects are stored.
+The young generation is further divided into two spaces: the Eden space and the survivor spaces.
+When an object is created, it is allocated in the Eden space. If the object survives a garbage collection cycle, it is moved to one of the survivor spaces.
+When the survivor spaces are full, the objects are moved to the old generation.
+
+Generational garbage collection is based on the observation that most objects die young. By dividing the heap into multiple generations and performing garbage collection on each generation separately,
+generational garbage collection can improve the performance of garbage collection by focusing on the areas of the heap where most garbage is generated.
+
+Generational garbage collection is done in two phases: minor garbage collection and major garbage collection.
+Minor garbage collection is performed on the young generation and is used to reclaim memory from short-lived objects.
+Major garbage collection is performed on the old generation and is used to reclaim memory from long-lived objects.
+G1 garbage collector is a generational garbage collector that divides the heap into multiple regions and performs garbage collection on the regions with the most garbage first.
+
+
+
