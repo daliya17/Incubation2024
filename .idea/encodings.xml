@@ -5,9 +5,9 @@
     <file url="file://$PROJECT_DIR$/src/Microservices/ConfigServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/Microservices/EurekaServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/Microservices/ProductService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Microservices/SagaPattern/OrderService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Microservices/SagaPattern/PaymentService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Microservices/SagaPattern/ShippingService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/Microservices/Userservice/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Microservices/sagapattern1/OrderService/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Microservices/sagapattern1/PaymentService/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Microservices/sagapattern1/ShippingService/src/main/java" charset="UTF-8" />
   </component>
 </project>

@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IncubationTraining.iml" filepath="$PROJECT_DIR$/IncubationTraining.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/Microservices/ProductService/productService.iml" filepath="$PROJECT_DIR$/src/Microservices/ProductService/productService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/Microservices/Userservice/userservice.iml" filepath="$PROJECT_DIR$/src/Microservices/Userservice/userservice.iml" />
     </modules>
   </component>
 </project>
