@@ -14,3 +14,6 @@ public class BlockingQueueExample {
         consumer.start();
     }
 }
+
+// blocking queue is used to implement producer-consumer problem in multithreading
+

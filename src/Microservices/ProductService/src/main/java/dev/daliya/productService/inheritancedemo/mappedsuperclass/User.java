@@ -15,3 +15,7 @@ public class User {
     private String name;
     private String email;
 }
+
+// in mapped superclass, the parent class is not an entity, but the child classes are entities
+// The parent class is annotated with @MappedSuperclass, and the child classes are annotated with @Entity.
+// The child classes inherit the fields and methods of the parent class, but the parent class is not an entity and is not mapped to a database table.

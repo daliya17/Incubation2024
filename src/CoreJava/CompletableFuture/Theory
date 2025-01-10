@@ -1,4 +1,5 @@
-Completable future is used for asynchronous programming in Java. Asynchronous programming is a form of parallel programming that allows a unit of work to run separately from the main application thread. When the work is complete, it notifies the main thread (as well as any other thread that is interested) that it is done. The main thread can then continue to work on other things.
+Completable future is used for asynchronous programming in Java. Asynchronous programming is a form of parallel programming that allows a unit of work to run separately from the main application thread. When the work is complete, it notifies the main thread (as well as any other thread that is interested) that it is done. The main thread can then continue to work on
+other things.
 CompletableFuture is a class in Java that represents a future result of an asynchronous computation.
 It is used to perform asynchronous operations and obtain the result when it is ready.
 CompletableFuture provides a way to write non-blocking, asynchronous code in a more readable and maintainable way.

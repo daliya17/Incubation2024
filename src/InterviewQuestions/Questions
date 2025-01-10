@@ -1,0 +1,374 @@
+Spring core vs spring boot -
+ Spring Core is the core module of the Spring Framework that provides the basic functionality of the framework,
+  such as dependency injection, aspect-oriented programming, and transaction management. It focuses on providing the core features of the Spring Framework.
+Spring boot is a higher level framework that builds on top of the Spring Framework and provides a set of tools and conventions to simplify the development of Spring applications.
+  It focuses on making it easy to create stand-alone, production-grade Spring-based applications that can be deployed with minimal configuration by providing auto-configuration, embedded servers and sensible default.
+
+Default design patterns for microservices:
+1. API Gateway: An API gateway is a single entry point for all requests to the microservices. It provides a unified interface for clients to access the various services in the system.
+2. Service Discovery: Service discovery is a mechanism that allows services to register themselves and discover other services in the system. This enables dynamic scaling and load balancing of services.
+3. Circuit Breaker: A circuit breaker is a design pattern that prevents cascading failures in a distributed system. It monitors the health of services and can temporarily block requests to a failing service.
+4. Event Sourcing: Event sourcing is a pattern where the state of an application is determined by a sequence of events. This allows for easy auditing, replaying of events, and building of complex business logic.
+5. CQRS: Command Query Responsibility Segregation (CQRS) is a pattern where the read and write operations of an application are separated. This allows for better scalability and performance by optimizing the read and write paths.
+6. Saga Pattern: The saga pattern is a way to manage distributed transactions in a microservices architecture. It breaks down a complex transaction into a series of smaller, independent transactions that can be rolled back if necessary.
+7. Bulkhead Pattern: The bulkhead pattern is a way to isolate failures in a microservices architecture. It involves partitioning the system into smaller components that can fail independently of each other.
+8. Gateway Aggregation: Gateway aggregation is a pattern where multiple gateways are combined into a single gateway to provide a unified interface for clients.
+9.Database per Service: Database per service is a pattern where each microservice has its own database. This allows for better isolation of data and reduces the risk of data corruption.
+
+
+Improve performance of rests api:
+1. Use caching: Caching can help reduce the response time of REST APIs by storing the results of expensive operations and returning them when the same request is made again.
+2. Use pagination: Pagination can help reduce the response time of REST APIs by limiting the amount of data returned in each request. This can help reduce the load on the server and improve the performance of the API.
+3. Use asynchronous processing: Asynchronous processing can help improve the performance of REST APIs by allowing long-running operations to be executed in the background.
+ This can help reduce the response time of the API and improve the overall performance.
+ example:
+    @Async
+    public CompletableFuture<User> getUserByIdAsync(Long id) {
+        return CompletableFuture.supplyAsync(() -> userRepository.findById(id).orElse(null));
+    }
+    here the getUserByIdAsync method is annotated with @Async, which tells Spring to execute the method in a separate thread.
+4. Use compression: Compression can help reduce the size of the response data returned by REST APIs, which can help improve the performance of the API by reducing the amount of data that needs to be transferred over the network.
+Compression can be done using techniques such as Gzip or Brotli.
+5. Use a content delivery network (CDN): A content delivery network (CDN) can help improve the performance of REST APIs by caching content closer to the end user. This can help reduce the response time of the API by reducing the latency of requests.
+6. Optimize database queries: Optimizing database queries can help improve the performance of REST APIs by reducing the time it takes to retrieve data from the database.
+ This can be done by using indexes, optimizing queries, and reducing the number of queries made to the database.
+7. Use a load balancer: Load balancers can help improve the performance of REST APIs by distributing incoming requests across multiple servers.
+This can help reduce the load on individual servers and improve the overall performance of the API.
+8. Monitor and optimize performance: Monitoring the performance of REST APIs can help identify bottlenecks and areas for improvement.
+    By monitoring key performance metrics such as response time, throughput, and error rates, you can identify areas that need optimization and make changes to improve the performance of the API.
+
+@Conditional annotation in spring boot:
+The @Conditional annotation in Spring Boot is used to conditionally enable or disable a bean based on certain conditions.
+example:
+    @Configuration
+    public class AppConfig {
+
+        @Bean
+        @Conditional(MyCondition.class)
+        public MyBean myBean() {
+            return new MyBean();
+        }
+    }
+    Implementing the MyCondition class:
+    public class MyCondition implements Condition {
+
+        @Override
+        public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+            // Add condition logic here
+            return true;
+        }
+    }
+
+    In this example, the @Bean annotation is annotated with @Conditional(MyCondition.class), if the condition specified in the MyCondition class is met, the MyBean bean will be created.
+    The MyCondition class implements the Condition interface and overrides the matches method to define the condition under which the bean should be created.
+    conditioncontext and AnnotatedTypeMetadata are used to provide information about the bean and the application context.
+    here the MyBean bean will only be created if the MyCondition condition is met.
+The @Conditional annotation can be used in combination with other annotations such as @ConditionalOnProperty, @ConditionalOnClass, @ConditionalOnBean, and @ConditionalOnMissingBean to define the conditions under which a bean should be created.
+The @Conditional annotation is a powerful feature in Spring Boot that allows you to conditionally enable or disable beans based on various conditions, such as the presence of certain classes, properties, or beans.
+example:
+
+ConditionalOnProperty:
+    @Configuration
+    @ConditionalOnProperty(name = "myapp.feature.enabled", havingValue = "true")
+    public class MyConfiguration {
+
+        @Bean
+        public MyBean myBean() {
+            return new MyBean();
+        }
+    }
+
+    In this example, the MyConfiguration class is annotated with @ConditionalOnProperty(name = "myapp.feature.enabled", havingValue = "true"),
+    which means that the MyBean bean will only be created if the myapp.feature.enabled property is set to true in the application.properties file.
+    The @ConditionalOnProperty annotation allows you to conditionally enable or disable beans based on the value of a property in the application.properties file.
+
+ConditionalOnClass:
+    @Configuration
+    @ConditionalOnClass(name = "com.example.MyClass")
+    public class MyConfiguration {
+
+        @Bean
+        public MyBean myBean() {
+            return new MyBean();
+        }
+    }
+
+    In this example, the MyConfiguration class is annotated with @ConditionalOnClass(name = "com.example.MyClass"),
+    which means that the MyBean bean will only be created if the com.example.MyClass class is present in the classpath.
+    The @ConditionalOnClass annotation allows you to conditionally enable or disable beans based on the presence of a certain class in the classpath.
+
+ConditionalOnBean:
+    @Configuration
+    @ConditionalOnBean(name = "myOtherBean")
+    public class MyConfiguration {
+
+        @Bean
+        public MyBean myBean() {
+            return new MyBean();
+        }
+    }
+
+    In this example, the MyConfiguration class is annotated with @ConditionalOnBean(name = "myOtherBean"),
+    which means that the MyBean bean will only be created if the myOtherBean bean is present in the application context.
+    The @ConditionalOnBean annotation allows you to conditionally enable or disable beans based on the presence of another bean in the application context.
+
+ConditionalOnMissingBean:
+    @Configuration
+    @ConditionalOnMissingBean(name = "myBean")
+    public class MyConfiguration {
+
+        @Bean
+        public MyBean myBean() {
+            return new MyBean();
+        }
+    }
+
+    In this example, the MyConfiguration class is annotated with @ConditionalOnMissingBean(name = "myBean"),
+    which means that the MyBean bean will only be created if the myBean bean is not present in the application context.
+    The @ConditionalOnMissingBean annotation allows you to conditionally enable or disable beans based on the absence of another bean in the application context.
+
+The @Conditional annotation in Spring Boot is a powerful feature that allows you to conditionally enable or disable beans based on various conditions.
+
+
+Tranaction management in spring boot:
+Transaction management in Spring Boot is handled by the Spring Framework's transaction management capabilities.
+Spring Boot provides support for declarative transaction management using annotations such as @Transactional.
+Transactional management in Spring Boot allows you to define transactional boundaries around methods or classes,
+which ensures that all operations within the transaction are either committed or rolled back as a single unit of work
+It is with respect to the database operations that are performed within the transactional boundaries.
+example:
+    @Service
+    public class UserService {
+
+        @Autowired
+        private UserRepository userRepository;
+
+        @Transactional
+        public User createUser(User user) {
+            return userRepository.save(user);
+        }
+
+        @Transactional
+        public User updateUser(User user) {
+            return userRepository.save(user);
+        }
+
+        @Transactional
+        public void deleteUser(Long id) {
+            userRepository.deleteById(id);
+        }
+    }
+
+    In this example, the UserService class is annotated with @Transactional, which means that all methods within the class will be executed within a transactional boundary.
+    The createUser, updateUser, and deleteUser methods perform database operations using the UserRepository class, which is a Spring Data JPA repository.
+    The @Transactional annotation ensures that all database operations performed within the transactional boundaries are either committed or rolled back as a single unit of work.
+    If an exception occurs during the execution of a method, the transaction will be rolled back, and any changes made to the database will be reverted.
+    Transaction management in Spring Boot is a powerful feature that allows you to define transactional boundaries around methods or classes and ensure that all operations within the transaction are either committed or rolled back as a single unit of work.
+
+Isoaltion levels in spring boot:
+Isolation levels in Spring Boot are used to control the visibility of changes made by one transaction to other transactions.
+There are four isolation levels in Spring Boot:
+1. READ_UNCOMMITTED: In this isolation level, a transaction can read uncommitted changes made by other transactions. This can lead to dirty reads, non-repeatable reads, and phantom reads.
+2. READ_COMMITTED: In this isolation level, a transaction can only read committed changes made by other transactions. This prevents dirty reads but can still lead to non-repeatable reads and phantom reads.
+3. REPEATABLE_READ: In this isolation level, a transaction can read the same data multiple times and get consistent results. This prevents dirty reads and non-repeatable reads but can still lead to phantom reads.
+4. SERIALIZABLE: In this isolation level, a transaction is completely isolated from other transactions and can only read and write data once all other transactions have completed. This provides the highest level of isolation but can lead to performance issues due to locking.
+
+dirty reads: Dirty reads occur when a transaction reads uncommitted changes made by another transaction. This can lead to inconsistent or incorrect data being read by the transaction.
+non-repeatable reads: Non-repeatable reads occur when a transaction reads the same data multiple times but gets different results each time. This can happen when another transaction updates or deletes the data between reads.
+phantom reads: Phantom reads occur when a transaction reads a set of rows that satisfy a certain condition, but when it tries to read the same set of rows again, it finds additional rows that were inserted by another transaction.
+
+example:
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    In this example, the getUserById method is annotated with @Transactional(isolation = Isolation.READ_COMMITTED),
+    which means that the transaction will use the READ_COMMITTED isolation level when executing the method.
+    This ensures that the transaction can only read committed changes made by other transactions and prevents dirty reads.
+    The isolation level can be specified using the isolation attribute of the @Transactional annotation, and the available isolation levels are READ_UNCOMMITTED, READ_COMMITTED, REPEATABLE_READ, and SERIALIZABLE.
+    Isolation levels in Spring Boot are used to control the visibility of changes made by one transaction to other transactions and ensure data consistency and integrity.
+    default isolation level in spring boot is Isolation.DEFAULT, which uses the default isolation level of the underlying database, which is typically READ_COMMITTED.
+
+Propogation levels in spring boot:
+default propagation level in spring boot is Propagation.REQUIRED, which means that the method will use an existing transaction if one exists or create a new transaction if no transaction exists.
+Propagation levels in Spring Boot are used to control how transactions are propagated between methods.
+There are seven propagation levels in Spring Boot:
+Required: If a transaction exists, the method will use it. If no transaction exists, a new transaction will be created.
+RequiresNew: A new transaction will always be created, even if a transaction already exists.
+Mandatory: The method must be executed within a transaction. If no transaction exists, an exception will be thrown.
+Supports: The method can be executed within a transaction, but it is not required. If a transaction exists, the method will use it.
+NotSupported: The method will not be executed within a transaction. If a transaction exists, it will be suspended.
+Never: The method will not be executed within a transaction. If a transaction exists, an exception will be thrown.
+Nested: The method will be executed within a nested transaction. If no transaction exists, a new transaction will be created.
+
+
+How microservices communicate aysnchronously:
+Microservices can communicate asynchronously using messaging systems such as Apache Kafka, RabbitMQ, or ActiveMQ.
+Asynchronous communication allows microservices to send messages to each other without waiting for a response, which can improve performance and scalability.
+There are several ways microservices can communicate asynchronously:
+1. Message Queues: Microservices can send messages to a message queue, where they are stored until they are consumed by another microservice. This allows microservices to communicate without being tightly coupled.
+2. Publish-Subscribe: Microservices can publish messages to a topic, and other microservices can subscribe to the topic to receive messages. This allows microservices to broadcast messages to multiple subscribers.
+3. Event-Driven Architecture: Microservices can use an event-driven architecture to communicate asynchronously by emitting events when certain actions occur. Other microservices can listen for these events and react accordingly.
+4. RESTful APIs: Microservices can communicate asynchronously using RESTful APIs by sending messages over HTTP. This allows microservices to communicate over the web without being tightly coupled.
+5. WebSockets: Microservices can communicate asynchronously using WebSockets, which provide a full-duplex communication channel between the client and server. This allows microservices to send messages in real-time.
+6. gRPC: Microservices can communicate asynchronously using gRPC, which is a high-performance, open-source RPC framework developed by Google. gRPC allows microservices to define services and messages using Protocol Buffers and communicate over HTTP/2.
+Asynchronous communication in microservices allows for decoupling of services, improved scalability, and better fault tolerance. It also enables microservices to communicate in real-time and handle large volumes of messages efficiently.
+
+How do you write a REST API in Java?
+To write a REST API in Java, you can use the Spring Boot framework, which provides a set of tools and conventions to simplify the development of RESTful web services.
+
+How do you handle exceptions globally in a Spring Boot application?
+To handle exceptions globally in a Spring Boot application, you can use the @ControllerAdvice annotation to define a global exception handler.
+
+How do you handle exceptions without using try and catch?
+You can handle exceptions without using try and catch by using the @ExceptionHandler annotation in Spring Boot to define exception handlers for specific exceptions.
+
+How do you implement transactions in a Spring Boot application?
+To implement transactions in a Spring Boot application, you can use the @Transactional annotation to define transactional boundaries around methods or classes.
+the method annotated with @Transactional will be executed within a transactional boundary, and any database operations performed within the method will be committed or rolled back as a single unit of work.
+
+use of volatile keyword?
+The volatile keyword in Java is used to indicate that a variable's value will be modified by different threads. The volatile keyword ensures that changes made to the variable by one thread are visible to other threads.
+The volatile keyword is used to prevent thread caching of variables, which can lead to inconsistent results when multiple threads access the same variable.
+thread caching is a technique used by the JVM to improve performance by storing variables in the thread's local memory instead of the main memory.
+When a variable is declared as volatile, the JVM ensures that changes made to the variable are immediately visible to other threads, and the variable is not cached in the thread's local memory.
+
+checked vs unchecked exceptions?
+Checked exceptions are exceptions that are checked at compile time, and the compiler forces the programmer to handle or declare them in the method signature using the throws keyword.
+Unchecked exceptions are exceptions that are not checked at compile time, and the compiler does not force the programmer to handle or declare them in the method signature.
+examples: checked exceptions include IOException, SQLException, and ClassNotFoundException, while unchecked exceptions include NullPointerException, ArrayIndexOutOfBoundsException, and IllegalArgumentException.
+
+how to handle checked exceptions in java streams(ex: list of fileNames are there in the list and if you are trying to open file based on fileName,how can you handle IOExceptions in streams)?
+To handle checked exceptions in Java streams, you can use the try-catch block inside the map or forEach method to catch the exception and handle it.
+
+
+write a Junit test case  for a DB call?
+To write a JUnit test case for a DB call, you can use the @SpringBootTest annotation to load the Spring application context and @DataJpaTest annotation to load only the JPA components.
+You can then use the @Autowired annotation to inject the repository or service that makes the DB call and write test methods to verify the behavior of the DB call.
+example:
+    @SpringBootTest
+    public class UserRepositoryTest {
+
+        @Autowired
+        private UserRepository userRepository;
+
+        @Test
+        public void testFindById() {
+            User user = userRepository.findById(1L).orElse(null);
+            assertNotNull(user);
+            assertEquals("John Doe", user.getName());
+        }
+    }
+
+    In this example, the UserRepositoryTest class is annotated with @SpringBootTest to load the Spring application context and @Autowired to inject the UserRepository.
+    The testFindById method tests the findById method of the UserRepository by verifying that the user with ID 1 exists and has the name "John Doe".
+    The test method uses assertions such as assertNotNull and assertEquals to verify the behavior of the DB call.
+
+
+Design patterns in spring boot:
+1. Singleton Pattern: The Singleton pattern is a design pattern that ensures a class has only one instance and provides a global point of access to that instance.
+2. Factory Pattern: The Factory pattern is a design pattern that provides an interface for creating objects without specifying the concrete class of the object to be created.
+Abstract Factory Pattern: The Abstract Factory pattern is a design pattern that provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+3.adapter pattern: The Adapter pattern is a design pattern that allows incompatible interfaces to work together by providing a wrapper that converts the interface of a class into another interface that a client expects.
+4. Decorator Pattern: The Decorator pattern is a design pattern that allows behavior to be added to individual objects dynamically without affecting the behavior of other objects of the same class.
+5strategy pattern: The Strategy pattern is a design pattern that defines a family of algorithms, encapsulates each algorithm, and makes them interchangeable. The Strategy pattern allows the algorithm to vary independently of the client that uses it.
+
+
+
+difference between @Configuration, @Component, @Service, @Repository, and @Controller annotations in Spring Boot?
+@Configuration: The @Configuration annotation is used to define a configuration class in Spring Boot. Configuration classes are used to configure beans and other components in the Spring application context.
+@Component: The @Component annotation is a generic stereotype annotation used to mark a class as a Spring component. Components are used to define beans in the Spring application context.
+@Service: The @Service annotation is a specialization of the @Component annotation used to mark a class as a service component in Spring Boot. Service components are used to define business logic and services in the Spring application context.
+@Repository: The @Repository annotation is a specialization of the @Component annotation used to mark a class as a repository component in Spring Boot. Repository components are used to define data access and persistence logic in the Spring application context.
+@Controller: The @Controller annotation is a specialization of the @Component annotation used to mark a class as a controller component in Spring Boot. Controller components are used to define web controllers in the Spring application context.
+In summary, @Configuration is used to define configuration classes, @Component is a generic stereotype annotation, @Service is used for service components, @Repository is used for repository components, and @Controller is used for controller components in Spring Boot.
+
+Spring treats all the above annotations as @Component, but they are used to provide more specific functionality and semantics to the components they annotate.
+These annotations are called stereotype annotations and are used to define the role and purpose of the components in the Spring application context.
+
+
+Method injection in spring boot:
+Method injection in Spring Boot is a technique used to inject dependencies into a bean by calling a method on the bean after it has been created.
+Method injection is useful when the dependencies of a bean cannot be injected through constructor injection
+Method injection is done by setter methods or other methods that take the dependency as a parameter and set it as a property of the bean.
+example:
+    @Component
+    public class MyBean {
+
+        private MyDependency myDependency;
+
+        @Autowired
+        public void setMyDependency(MyDependency myDependency) {
+            this.myDependency = myDependency;
+        }
+    }
+
+    In this example, the MyBean class defines a method setMyDependency that takes a MyDependency object as a parameter and sets it as a dependency of the bean.
+    The @Autowired annotation is used to inject the MyDependency bean into the MyBean bean by calling the setMyDependency method after the MyBean bean has been created.
+    Method injection is a powerful feature in Spring Boot that allows you to inject dependencies into a bean by calling a method on the bean after it has been created.
+
+ lookup method injection in spring boot:
+
+Lookup method injection in Spring Boot is a technique used to inject dependencies into a bean by defining an abstract method in the bean that returns the dependency.
+Lookup method injection is useful when the dependencies of a bean cannot be injected through constructor injection or setter injection.
+Lookup method injection is done by defining an abstract method in the bean that returns the dependency and annotating the method with the @Lookup annotation.
+example:
+    @Component
+    public abstract class MyBean {
+
+        @Lookup
+        public abstract MyDependency getMyDependency();
+    }
+
+    In this example, the MyBean class defines an abstract method getMyDependency that returns a MyDependency object and annotates the method with the @Lookup annotation.
+    The @Lookup annotation tells Spring to dynamically generate an implementation of the abstract method that returns the dependency.
+    When the getMyDependency method is called, Spring will return the MyDependency bean that is injected into the MyBean bean.
+    Lookup method injection is a powerful feature in Spring Boot that allows you to inject dependencies into a bean by defining an abstract method that returns the dependency.
+
+Bean factory in spring boot;
+BeanFactory is the root interface for accessing the Spring IoC container. The BeanFactory provides the basic support for managing beans and their dependencies.
+The BeanFactory interface provides methods for retrieving beans by name, type, and other criteria, as well as methods for managing the lifecycle of beans.
+
+ApplicationContext in spring boot:
+ApplicationContext is a sub-interface of the BeanFactory interface that provides additional functionality and features for managing beans in the Spring IoC container.
+The ApplicationContext interface provides methods for accessing beans, managing the lifecycle of beans, and handling events and messages.
+The ApplicationContext interface also provides support for internationalization, resource loading, and application context hierarchies.
+
+difference between BeanFactory and ApplicationContext in spring boot:
+BeanFactory is the root interface for accessing the Spring IoC container and provides basic support for managing beans and their dependencies.
+ApplicationContext is a sub-interface of the BeanFactory interface that provides additional functionality and features for managing beans in the Spring IoC container.
+Apploication context provides additional features such as internationalization, resource loading, event handling, annotation-based configuration, and application context hierarchies.
+
+Difference between association, aggregation, and composition in Java?
+Association: Association is a relationship between two classes that describes how the classes are related to each other. It can be a one-to-one, one-to-many, or many-to-many relationship.It is a use-a relationship, where one class uses another class.
+Aggregation: Aggregation is a type of association where one class contains a reference to another class, but the two classes can exist independently of each other. It is a "has-a" relationship, where one class has a reference to another class,
+but the contained class can exist without the container class. One class is a part of another class, but it can exist independently.
+Composition: Composition is a type of association where one class contains an instance of another class, and the two classes are tightly coupled. The contained class cannot exist without the container class. It is a "part-of" relationship.
+
+Composition over inheritance in Java:
+Composition over inheritance is a design principle that suggests favoring composition (has-a relationship) over inheritance (is-a relationship) when designing classes and relationships between classes.
+Composition allows for greater flexibility and reusability by allowing classes to be composed of other classes and objects, rather than inheriting behavior from a superclass, which can lead to tight coupling and inflexible designs.
+
+
+12 factor app:
+The 12-factor app is a set of best practices and guidelines for building modern, cloud-native applications that are scalable, maintainable, and resilient.
+The 12 factors are:
+1. Codebase: One codebase tracked in revision control, many deploys.
+2. Dependencies: Explicitly declare and isolate dependencies.
+3. Config: Store configuration in the environment.
+4. Backing services: Treat backing services as attached resources, like databases or message queues.
+5. Build, release, run: Strictly separate build and run stages, and keep builds fast.
+6. Processes: Execute the app as one or more stateless processes.
+7. Port binding: Export services via port binding.
+8. Concurrency: Scale out via the process model.
+9. Disposability: Maximize robustness with fast startup and graceful shutdown.
+10. Dev/prod parity: Keep development, staging, and production as similar as possible.
+11. Logs: Treat logs as event streams.
+12. Admin processes: Run admin/management tasks as one-off processes, separate from the app.
+
+
+concurrent modification exception in java:
+ConcurrentModificationException is a runtime exception that is thrown when a collection is modified while it is being iterated over by another thread.
+This exception is typically thrown when a collection is modified by one thread while another thread is iterating over the collection using an iterator.
+To avoid ConcurrentModificationException, you can use concurrent collections such as ConcurrentHashMap or CopyOnWriteArrayList, or synchronize access to the collection using locks or synchronized blocks.

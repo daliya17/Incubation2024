@@ -1,0 +1,117 @@
+Hibernate Theory
+Hiberate is an ORM (Object Relational Mapping) tool that maps the Java objects to the database tables.
+ It simplifies the data access layer and eliminates the need for writing complex SQL queries.
+  Hibernate provides a framework for mapping an object-oriented domain model to a relational database.
+
+JPA (Java Persistence API) is a specification for accessing, persisting, and managing data between Java objects and a relational database.
+ Hibernate is an implementation of the JPA specification.
+
+Spring JPA is a part of the Spring Data project that makes it easy to implement JPA-based repositories.
+ Spring Data JPA uses Hibernate as the default implementation.
+
+Persistence context is a short-lived, transaction-scoped context that stores a map of entities that are currently in the scope of a particular EntityManager.
+ The persistence context is used to track changes to entities and ensure that changes are persisted to the database when the transaction is committed.
+ Entity Manager:  EntityManager is part of the JPA specification and is used for managing entities, handling persistence operations, and interacting with the database.
+Hibernate provides several features, such as:
+1. Object-Relational Mapping: Hibernate maps Java classes to database tables and Java data types to SQL data types.
+2. Automatic Table Generation: Hibernate can automatically generate database tables based on the Java classes.
+example:
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String email;
+    // getters and setters
+}
+3. Query Language: Hibernate Query Language (HQL) is an object-oriented query language similar to SQL.
+example:
+List<User> users = session.createQuery("FROM User", User.class).getResultList();
+4. Caching: Hibernate provides caching mechanisms to improve performance.
+First-level cache: Session-level cache that stores objects within the current session.
+it is managed by the session and is cleared when the session is closed.
+Methods annotated with @Transactional are executed within a transactional context, within a session, first level cache is used.
+second-level cache: SessionFactory-level cache that stores objects across sessions, in spring boot, second level cache is enabled by default and managed by the cache provider.
+
+5. Lazy Loading: Hibernate supports lazy loading, which delays the loading of associated objects until they are actually needed.
+example:
+@Entity
+public class User {
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Order> orders;
+    // getters and setters
+}
+when we fetch a user, the orders associated with the user are not loaded until they are accessed.
+
+6. Transactions: Hibernate supports transactions, which allow multiple database operations to be grouped together and treated as a single unit of work.
+example:
+@Transactional
+public void saveUser(User user) {
+    entityManager.persist(user);
+}
+Transactions ensure that all operations are either committed or rolled back together.
+Isolation levels: Isolation levels define the degree to which one transaction must be isolated from the effects of other transactions.
+Thre are 4 isolation levels in hibernate:
+1. Read Uncommitted: Allows dirty reads, non-repeatable reads, and phantom reads.
+2. Read Committed: Allows non-repeatable reads and phantom reads.
+3. Repeatable Read: Allows phantom reads.
+4. Serializable: Provides the highest level of isolation, ensuring that transactions are completely isolated from each other.
+
+defualt isolation level in hibernate is Read Committed.
+
+Propagations: Propagation defines the behavior of a transaction when a method is called within the scope of an existing transaction.
+There are 7 propagation levels in hibernate:
+1. REQUIRED: If a transaction exists, use it. If not, create a new transaction.
+2. REQUIRES_NEW: Always create a new transaction.
+3. SUPPORTS: If a transaction exists, use it. If not, run without a transaction.
+4. MANDATORY: Requires an existing transaction. Throws an exception if no transaction exists.
+5. NOT_SUPPORTED: Run without a transaction. Suspend the existing transaction if one exists.
+6. NEVER: Run without a transaction. Throws an exception if a transaction exists.
+7. NESTED: Run within a nested transaction if a transaction exists. Otherwise, create a new transaction.
+
+7. Inheritance Mapping: Hibernate supports inheritance mapping, allowing subclasses to inherit properties and behaviors from a superclass.
+There are four inheritance mapping strategies in Hibernate:
+1. Single Table Inheritance: All classes in the hierarchy are mapped to a single table.
+2. Table Per Class Inheritance: Each class in the hierarchy is mapped to its own table.
+3. Joined Table Inheritance: Each class in the hierarchy is mapped to its own table, and the tables are linked using foreign key relationships.
+4. Mapped Superclass Inheritance: The superclass is not mapped to a table, and the subclasses are mapped to their own tables.
+default inheritance strategy in hibernate is Single Table Inheritance.
+
+8. One to One Mapping: Hibernate supports one-to-one mapping between entities, where each entity has a single associated entity.
+example:
+@Entity
+public class User {
+    @OneToOne
+    private Address address;
+    // getters and setters
+}
+9. One to Many Mapping: Hibernate supports one-to-many mapping between entities, where one entity can have multiple associated entities.
+example:
+@Entity
+public class User {
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+    // getters and setters
+}
+mapped by attribute is used to specify the field in the child entity that maps to the parent entity.
+
+10. many to one mapping: Hibernate supports many-to-one mapping between entities, where multiple entities can be associated with a single entity.
+example:
+@Entity
+public class Order {
+    @ManyToOne
+    private User user;
+    // getters and setters
+}
+11. Many to Many Mapping: Hibernate supports many-to-many mapping between entities, where multiple entities can be associated with each other.
+example:
+@Entity
+public class User {
+    @ManyToMany
+    private List<Role> roles;
+    // getters and setters
+}
+JoinTable annotation is used to specify the join table and the columns that map the relationship.
+

@@ -34,3 +34,6 @@ public class Main {
         }
     }
 }
+
+// comparable is used to sort the objects based on single data member, its implemented by the class whose objects are to be sorted
+// comparator is used to sort the objects based on multiple data members, its implemented by a separate class

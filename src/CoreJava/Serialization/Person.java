@@ -50,6 +50,7 @@ public class Person implements Serializable, ObjectInputValidation {
         return this;
     }
 
+    // readResolve method is called after readObject method, it is used to return the singleton instance
     @Serial
     private Object readResolve() throws ObjectStreamException {
         System.out.println("readResolve method called");

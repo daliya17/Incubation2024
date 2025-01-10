@@ -1,0 +1,83 @@
+Java 8:
+new features:
+1. Lambda Expressions
+2. Functional Interfaces
+3. Stream API
+4. Default Methods
+5. Method References
+6. Optional Class
+7. Nashorn JavaScript Engine
+8. New Date and Time API : Java 8 introduced a new Date and Time API in the java.time package. The new API is more comprehensive and flexible than the existing Date and Calendar classes.
+9. Base64 Encode Decode
+10. Static Method in Interface
+11. Collection API improvements
+12. Concurrency API improvements
+13. Java IO improvements
+14. Miscellaneous Core API improvements
+15. Java NIO improvements
+
+
+Java 9:
+new features:
+1. JShell
+2. Modular System: Java 9 introduced a new modular system that allows you to modularize your code and create modules that can be reused across different projects.
+3. Reactive Streams: Java 9 introduced a new Flow API that provides support for reactive streams. The Flow API allows you to create streams of data that can be processed asynchronously.
+
+4. Private Methods in Interfaces: Java 9 introduced the ability to create private methods in interfaces. Private methods in interfaces can be used to break down the code into smaller, more manageable pieces.
+5. Diamond Operator for Anonymous Inner Class: Java 9 introduced the ability to use the diamond operator with anonymous inner classes. The diamond operator allows you to omit the type arguments when creating an instance of a generic class.
+6. Try-With-Resources Improvement: Java 9 introduced the ability to use the try-with-resources statement with effectively final variables. Effectively final variables are variables that are not modified after they are initialized.
+7. Stream API Improvements: Java 9 introduced several improvements to the Stream API, including new methods for creating streams, new methods for processing streams, and new methods for combining streams.
+8. Optional Class Improvements: Java 9 introduced several improvements to the Optional class, including new methods for creating Optional objects, new methods for processing Optional objects, and new methods for combining Optional objects.
+9. CompletableFuture API Improvements: Java 9 introduced several improvements to the CompletableFuture API, including new methods for creating CompletableFuture objects, new methods for processing CompletableFuture objects, and new methods for combining CompletableFuture objects.
+10.unmodifiableList() method in List Interface, unmodifiableSet() method in Set Interface, unmodifiableMap() method in Map Interface
+
+
+Java 10:
+new features:
+1. Local Variable Type Inference: Java 10 introduced the ability to use the var keyword to declare local variables with inferred types. The var keyword allows you to declare local variables without specifying their types explicitly.
+2. Garbage-Collector Interface: Java 10 introduced a new garbage collector interface that allows you to create custom garbage collectors. The garbage collector interface provides a standard way to interact with the garbage collection system.
+3. Parallel Full GC for G1: Java 10 introduced the ability to perform full garbage collection in parallel with the G1 garbage collector. The parallel full garbage collection feature allows you to perform full garbage collection more efficiently with the G1 garbage collector.
+4. Application Class-Data Sharing: Java 10 introduced the ability to share application class data across multiple Java processes. The application class-data sharing feature allows you to reduce the startup time and memory footprint of Java applications by sharing common class data.
+
+Java 11:
+new features:
+1. Local-Variable Syntax for Lambda Parameters: Java 11 introduced the ability to use the var keyword to declare lambda parameters with inferred types. The var keyword allows you to declare lambda parameters without specifying their types explicitly.
+2. HTTP Client (Standard): Java 11 introduced a new HTTP client API that provides support for HTTP/2 and WebSocket. The new HTTP client API allows you to send HTTP requests and receive HTTP responses asynchronously.
+3. Flight Recorder: Java 11 introduced a new Flight Recorder API that provides support for flight recording. The new Flight Recorder API allows you to record events and monitor the performance of Java applications.
+4. Epsilon: Java 11 introduced a new garbage collector called the Epsilon garbage collector. The Epsilon garbage collector is a no-op garbage collector that does not perform any garbage collection.
+5. ZGC: Java 11 introduced a new garbage collector called the Z garbage collector. The Z garbage collector is designed to provide better performance and lower pause times compared to other garbage collectors.
+6. new String Methods: Java 11 introduced several new methods in the String class, including isBlank(), lines(), repeat(), and stripIndent(). The new String methods allow you to perform common string operations more easily.
+7. Nest-Based Access Control: Java 11 introduced a new access control mechanism called nest-based access control. The nest-based access control feature allows you to access private members of a class from other classes in the same nest.
+8. Dynamic Class-File Constants: Java 11 introduced a new constant pool form called dynamic class-file constants. The dynamic class-file constants feature allows you to define constants in the constant pool that are resolved at runtime.
+9. Launch Single-File Source-Code Programs: Java 11 introduced the ability to launch single-file source-code programs directly from the command line. The launch single-file source-code programs feature allows you to run Java programs without compiling them first.
+
+Java 17:
+new features:
+1. Sealed Classes: Java 17 introduced sealed classes, which allow you to restrict the subclasses of a class. Sealed classes provide a way to control the inheritance hierarchy and prevent unauthorized subclasses from being created.
+example:
+sealed class Shape permits Circle, Rectangle, Triangle {
+    // ...
+}
+2. Pattern Matching for switch: Java 17 introduced pattern matching for switch statements, which allows you to use patterns in switch statements. Pattern matching for switch statements provides a way to match patterns in switch statements and extract values from them.
+example:
+int result = switch (shape) {
+    case Circle c -> c.getRadius();
+    case Rectangle r -> r.getWidth() * r.getHeight();
+    case Triangle t -> t.getBase() * t.getHeight() / 2;
+};
+here shape is the object of Shape class and Circle, Rectangle, Triangle are the subclasses of Shape class.
+3. Records: Java 17 introduced records, which are a new kind of class that provides a concise way to create data classes. Records provide a way to create classes that are simple data containers with a fixed set of properties.
+example:
+record Point(int x, int y) {
+    // ...
+}
+4. New Methods in the String Class: Java 17 introduced several new methods in the String class, including stripIndent(), transform(), and describeConstable(). The new methods in the String class provide a way to perform common string operations more easily.
+5. New Methods in the List Interface: Java 17 introduced several new methods in the List interface, including takeWhile(), dropWhile(), and iterate(). The new methods in the List interface provide a way to perform common list operations more easily.
+6. New Methods in the Stream API: Java 17 introduced several new methods in the Stream API, including mapMulti(), unordered(), and filterMap(). The new methods in the Stream API provide a way to perform common stream operations more easily.
+7. New Methods in the Optional Class: Java 17 introduced several new methods in the Optional class, including or(), isEmpty(), and ifPresentOrElse(). The new methods in the Optional class provide a way to perform common optional operations more easily.
+8. New Methods in the Files Class: Java 17 introduced several new methods in the Files class, including readString(), writeString(), and isSameFile(). The new methods in the Files class provide a way to perform common file operations more easily.
+9. New Methods in the Path Class: Java 17 introduced several new methods in the Path class, including readString(), writeString(), and isSameFile(). The new methods in the Path class provide a way to perform common path operations more easily.
+
+
+
+

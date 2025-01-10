@@ -47,4 +47,10 @@ public class AnnotationProcessor {
             System.out.println("Complie Time Annotation: " + complieTimeAnnotation.compiler());
         }
      }
+
+     // custom annotation processor
+    // in java 8, you can use the java reflection API to process annotations
+    // at runtime. This is useful for creating custom annotations and processing them
+    // at runtime.
+    // We can create a custom annotation processor that reads annotations and performs some action based on the annotation.
 }

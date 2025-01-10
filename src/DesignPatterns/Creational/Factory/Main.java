@@ -24,4 +24,6 @@ public class Main {
     //When you want to create objects from a family of related classes.
     //When the creation process of objects is complex or involves several steps, and you want to hide that complexity from the client.
     //When you want to decouple the client from the object creation process.
+    // abstarct factory pattern is used when we have multiple factories and each factory creates multiple objects
+    // abstarct factory is a factory of factories
 }

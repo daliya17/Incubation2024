@@ -1,0 +1,28 @@
+Generics in java was introduced in JDK 1.5. Generics added an extra layer of abstraction over types. Generics allows us to write a class or method that can work with any data type.
+Generics are used to create classes, interfaces and methods that operate on objects of specified type.
+
+Generics provide compile-time type safety that allows programmers to catch invalid types at compile time.
+Generics allow us to implement generic algorithms that work with different types.
+
+need for generics:
+Before generics, we can store any type of objects in collection i.e. non-generic.
+the disadvantage of non-generic is that we need to typecast the object.
+Extra typecasting is required in non-generic because it returns Object type, explicit type casting is needed at runtime.
+Generics provide compile-time type checking and remove the need for explicit type casting.
+
+Advantages of Generics:
+1. Type-safety: We can hold only a single type of objects in generics. It doesn't allow to store other objects.
+2. Typecasting is not required: There is no need to typecast the object.
+3. Compile-Time Checking: It is checked at compile time so problem will not occur at runtime.
+4. Generics can be used to create generic classes, interfaces, and methods that work with different types.
+
+Type eraser in Generics:
+Generics in Java is implemented using type erasure. Type erasure is a process in which compiler replaces a generic type with a non-generic type or Object type at compile time.
+Type erasure is a technique used by Java compiler to implement generics. It removes all the generic type information from the compiled code to make it compatible with the JVM.
+Type erasure is used to ensure backward compatibility with older versions of Java that do not support generics.
+
+We can restrict the type parameter to a specific type or its subclasses using bounded type parameters.
+Bounded type parameters allow us to restrict the types that can be used as type arguments in a generic class or method.
+Invaiance: Invariance means that the type parameter of a generic class or method is not covariant or contravariant. Invariance means that the type parameter must match exactly.
+Covariance: Covariance means that the type parameter of a generic class or method can be a subtype of the specified type.
+Contravariance: Contravariance means that the type parameter of a generic class or method can be a supertype of the specified type.

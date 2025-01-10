@@ -2,6 +2,8 @@ package CoreJava.Multithreading;
 
 public class VolatileExample {
     // volatile keyword is used to indicate that a variable's value will be modified by different threads, so that the JVM does not cache the value of the variable.
+    // usually, the JVM caches the value of a variable in a thread's local memory, so that the thread can access the variable faster.
+    // when a variable is declared as volatile, the JVM will not cache the value of the variable in the thread's local memory, so that the thread will always read the value of the variable from the main memory.
     private static volatile boolean flag = false;
 
     public static void main(String[] args) throws InterruptedException {

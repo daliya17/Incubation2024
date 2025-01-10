@@ -14,3 +14,5 @@ public class MyRunnable implements Runnable {
         }
     }
 }
+
+// runnable interface in java is used to represent a task that can be executed by a thread

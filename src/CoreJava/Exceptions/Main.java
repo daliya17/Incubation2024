@@ -16,3 +16,13 @@ public class Main {
         }
     }
 }
+
+// exception hierarchy in Java
+// Throwable is the superclass of all errors and exceptions in Java
+// Error is a subclass of Throwable
+// Exception is a subclass of Throwable
+// RuntimeException is a subclass of Exception
+// checked exceptions are exceptions that must be caught or declared to be thrown
+// unchecked exceptions are exceptions that don't have to be caught or declared to be thrown
+// checked exceptions are subclasses of Exception that are not subclasses of RuntimeException
+// unchecked exceptions are subclasses of RuntimeException

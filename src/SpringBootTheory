@@ -333,3 +333,5 @@ Some of the key features of exception handling in Spring Boot include:
 6. @ExceptionHandler(value = {Exception.class, RuntimeException.class}): The @ExceptionHandler annotation with the value attribute is used to define exception handling methods for multiple exceptions. It allows developers to handle different types of exceptions in a single method.
 7. @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR): The @ResponseStatus annotation with the HttpStatus.INTERNAL_SERVER_ERROR value is used to set the HTTP status code for exception handling methods. It allows developers to return a 500 Internal Server Error response for server-side errors.
 8. ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource not found"): The ResponseEntity class with the status and body methods is used to create a custom error response for exception handling methods. It allows developers to set the status code and error message for resource not found errors.
+
+

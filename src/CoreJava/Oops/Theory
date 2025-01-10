@@ -1,0 +1,3 @@
+System.out.println("Path: " + Paths.get("src", "CoreJava", "Oops", "Theory"));
+
+println is a method of PrintStream class which is a member of System class. It is used to print the output to the console. Paths.get() method is used to create a Path object by joining the given strings. In this case, it joins the strings "src", "CoreJava", "Oops", "Theory" to create a Path object representing the path "src/CoreJava/Oops/Theory". The output of the above code will be:

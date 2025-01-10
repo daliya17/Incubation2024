@@ -18,3 +18,10 @@ public class ThreadPoolExample {
         executorService.shutdown();
     }
 }
+
+// executor service is used to manage threads in a thread pool, it is an interface in java.util.concurrent package
+// Executors is a utility class to create different types of executor services
+// newFixedThreadPool creates a thread pool with a fixed number of threads
+// submit method is used to submit a task to the executor service
+// shutdown method is used to shutdown the executor service
+// we dont have to create a new thread for each task, we can submit the task to the executor service and it will manage the threads in the thread pool
