@@ -20,7 +20,8 @@ public class Main {
         List<Integer> squaresOfOddNumbers = list.stream().filter(i -> i % 2 != 0).map(i -> i * i).toList();
         squaresOfOddNumbers.forEach(System.out::println);
 
-        Optional<Integer> avg = list.stream().reduce(Integer::sum).map(s -> s / list.size());
+        Optional<Integer> avg = list.stream()
+                .reduce(Integer::sum).map(s -> s / list.size());
         System.out.println(avg.orElse(0));
 
         // concatenate all names, separated by space
@@ -54,7 +55,10 @@ public class Main {
 
         // print names starting with K
         names.stream().filter(name -> name.startsWith("K")).forEach(System.out::println);
-
+        String s1 = "Hello";
+        String s2 = new String("Hello");
+        System.out.print(s1 == s2);
+        System.out.print(s1.equals(s2));
 
     }
 }

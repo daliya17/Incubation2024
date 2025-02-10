@@ -20,6 +20,9 @@ public class Employee {
     public String getAccount() {
         return account;
     }
+    public Long getSalary(){
+        return salary;
+    }
 
     public void setAccount(String account) {
         this.account = account;
@@ -29,10 +32,13 @@ public class Employee {
     private String gender;
     private String account;
 
-    public Employee(String name, String gender, String account) {
+    private Long salary;
+
+    public Employee(String name, String gender, String account,Long salary) {
         this.name = name;
         this.gender = gender;
         this.account = account;
+        this.salary = salary;
     }
 
 }

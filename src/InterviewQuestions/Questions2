@@ -1,0 +1,44 @@
+1. Difference Between Abstract Classes and Interfaces
+Answer:
+"An abstract class can have both abstract and non-abstract methods, instance variables, and constructors, making it useful for sharing common behavior and state among classes. An interface defines a contract for classes to follow, typically with abstract methods (prior to Java 8) or default and static methods (since Java 8). Interfaces cannot have instance variables or constructors. Use abstract classes when you need shared behavior, and interfaces when defining common capabilities across different class hierarchies."
+
+2. Difference Between Spring and Spring Boot
+Answer:
+"Spring is a comprehensive framework that requires manual configuration for building Java-based enterprise applications. Spring Boot simplifies this by providing auto-configuration, embedded servers, and sensible defaults, making it easier and faster to set up Spring applications without extensive configuration."
+
+3. How to Answer Spring and Spring Boot Differences in an Interview
+Answer:
+"Spring Framework is a comprehensive set of tools for Java enterprise applications that requires manual configuration. Spring Boot, on the other hand, simplifies this process by providing auto-configuration, embedded servers, and pre-configured settings, making the development process faster and more streamlined."
+
+4. Difference Between @Component and @Service
+Answer:
+"@Component is a generic annotation to mark any class as a Spring bean. @Service is a specialization of @Component that is typically used for service-layer classes containing business logic. Both annotations make the class eligible for dependency injection, but @Service is more semantically meaningful for service classes."
+
+5. What is @Transactional? What is its Scope?
+Answer:
+"@Transactional ensures that a method or class is executed within a transactional context, meaning that all database operations are committed or rolled back as a unit. Its scope can be applied to methods or classes, and it manages the transaction lifecycle for the operations within the scope."
+
+6. Explain the Flow of a Request in a Spring Boot Application
+Answer:
+"When a client sends a request, it first hits the DispatcherServlet, which maps the request to the corresponding controller method using HandlerMapping. The controller processes the request, delegates logic to the service layer, and interacts with the repository to fetch or update data. Finally, the response is generated and sent back to the client."
+
+7. Difference Between Native Query and JPQL
+Answer:
+"Native Query uses the native SQL syntax specific to the database and directly interacts with the database tables and columns. JPQL (Java Persistence Query Language) is object-oriented, allowing you to query entity objects and their relationships. JPQL is database-independent, while native queries are used when leveraging database-specific features."
+
+8. What is a Config Server?
+Answer:
+"A config server is a centralized service that manages configuration settings for multiple microservices. Spring Cloud Config Server is commonly used to store configurations in a Git repository, allowing services to dynamically fetch configurations and update them without needing to restart."
+
+9. what is service discovery in microservices?
+Answer:
+"Service discovery is a mechanism that allows microservices to automatically find and communicate with each other, eliminating the need for hardcoding network addresses like IP addresses or hostnames. In distributed systems, services are dynamic, so service discovery helps to manage instances that may scale up or down or change locations.
+
+There are two types of service discovery:
+
+Client-Side Discovery: The client queries the service registry to find an available instance and connects to it directly. Examples include Netflix Eureka, where the client retrieves the service location.
+Server-Side Discovery: A load balancer or API gateway queries the registry on behalf of the client, routes the request to an available service instance, and performs load balancing. Kubernetes, for example, manages service discovery through internal DNS.
+A service registry is a central component in service discovery, where services register themselves with their metadata such as network location and health status. This allows other services to look up and communicate with them dynamically. Tools like Eureka, Consul, and Kubernetes are commonly used for this purpose.
+
+In addition to basic discovery, services perform regular health checks to ensure that only healthy services are available for communication. This helps with fault tolerance and ensures that traffic is routed only to services that are up and running."
+

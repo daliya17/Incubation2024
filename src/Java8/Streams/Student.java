@@ -7,6 +7,12 @@ public class Student {
     private int id;
     private int age;
 
+    public boolean isPassed() {
+        return isPassed;
+    }
+
+    private boolean isPassed;
+
     public int getGrade() {
         return grade;
     }
@@ -25,13 +31,14 @@ public class Student {
 
     private List<Address> addresses;
 
-    public Student(String name, int id, int age, List<Address> addresses, int grade, String section) {
+    public Student(String name, int id, int age, List<Address> addresses, int grade, String section, boolean isPassed) {
         this.name = name;
         this.id = id;
         this.age = age;
         this.addresses = addresses;
         this.grade = grade;
         this.section = section;
+        this.isPassed = isPassed;
     }
 
     public String getName() {

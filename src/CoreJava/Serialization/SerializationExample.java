@@ -8,6 +8,10 @@ public class SerializationExample {
     // transient keyword is used to indicate that a field should not be serialized.
     // static fields are not serialized.
     // serialVersionUID is a unique identifier for Serializable classes.
+    // serialversionid is used to ensure that the same class is used during serialization and deserialization.
+    // if the serialVersionUID is not provided, the JVM will generate it based on the class definition.
+    // if the serialVersionUID is not provided and the class definition is changed, the JVM will generate a new serialVersionUID and the deserialization will fail.
+
     // writeObject, readObject, writeReplace, readResolve are the methods that can be used to customize the serialization and deserialization process.
     // ObjectInputValidation is an interface that can be implemented to validate the object after deserialization.
     // singleton pattern can be implemented using readResolve method.

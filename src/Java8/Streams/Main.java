@@ -67,15 +67,15 @@ public class Main {
         Address address3 = new Address("address3");
         Address address4 = new Address("address4");
         Address address5 = new Address("address5");
-        Student student1 = new Student("Naman", 1, 22, List.of(address1, address2), 1, "A");
-        Student student2 = new Student("Kumar", 2, 23, List.of(address3, address4), 2, "A");
-        Student student3 = new Student("Pawan", 3, 24, List.of(address5, address1), 3, "A");
-        Student student4 = new Student("Kumari", 4, 25, List.of(address2, address3), 4, "A");
-        Student student5 = new Student("Shawn", 5, 26, List.of(address4, address5), 2, "B");
-        Student student6 = new Student("Kumara", 6, 27, List.of(address1, address2), 3, "B");
-        Student student7 = new Student("Kumari", 7, 28, List.of(address3, address4), 4, "B");
-        Student student8 = new Student("Shawnw", 8, 29, List.of(address5, address1), 2, "B");
-        Student student9 = new Student("Kumara", 9, 30, List.of(address2, address3), 5, "A");
+        Student student1 = new Student("Naman", 1, 22, List.of(address1, address2), 1, "A", true);
+        Student student2 = new Student("Kumar", 2, 23, List.of(address3, address4), 2, "A",true);
+        Student student3 = new Student("Pawan", 3, 24, List.of(address5, address1), 3, "A", false);
+        Student student4 = new Student("Kumari", 4, 25, List.of(address2, address3), 4, "A",false);
+        Student student5 = new Student("Shawn", 5, 26, List.of(address4, address5), 2, "B", true);
+        Student student6 = new Student("Kumara", 6, 27, List.of(address1, address2), 3, "B", false);
+        Student student7 = new Student("Kumari", 7, 28, List.of(address3, address4), 4, "B", true);
+        Student student8 = new Student("Shawnw", 8, 29, List.of(address5, address1), 2, "B", true);
+        Student student9 = new Student("Kumara", 9, 30, List.of(address2, address3), 5, "A", false);
         List<Student> students = new ArrayList<>(List.of(student1, student3, student2, student4, student5, student6, student7, student8, student9));
         students.stream().filter(x -> x.getAddresses().stream().anyMatch(address -> address.getCity().equals("address1"))).forEach(System.out::println);
 
@@ -88,16 +88,16 @@ public class Main {
         // collectingAndThen is used to perform another operation on the result of the collector
         top3Students.forEach((key, value) -> System.out.println(key + " : " + value));
 
-        Employee employee1 = new Employee("John", "Male", "HR");
-        Employee employee2 = new Employee("Jane", "Female", "Finance");
-        Employee employee3 = new Employee("Janet", "Female", "HR");
-        Employee employee4 = new Employee("sulu", "Female", "HR");
-        Employee employee5 = new Employee("Jase", "male", "Finance");
-        List<Employee> employees = new ArrayList<>(List.of(employee1, employee2, employee3, employee4, employee5));
-
-
-        System.out.println(employees.stream().filter(x -> x.getGender().equals("Female")).collect(Collectors.groupingBy(Employee::getAccount, Collectors.counting()))
-                .entrySet().stream().max(Comparator.comparingLong(Map.Entry::getValue)).map(Map.Entry::getKey).orElse(null));
+//        Employee employee1 = new Employee("John", "Male", "HR");
+//        Employee employee2 = new Employee("Jane", "Female", "Finance");
+//        Employee employee3 = new Employee("Janet", "Female", "HR");
+//        Employee employee4 = new Employee("sulu", "Female", "HR");
+//        Employee employee5 = new Employee("Jase", "male", "Finance");
+//        List<Employee> employees = new ArrayList<>(List.of(employee1, employee2, employee3, employee4, employee5));
+//
+//
+//        System.out.println(employees.stream().filter(x -> x.getGender().equals("Female")).collect(Collectors.groupingBy(Employee::getAccount, Collectors.counting()))
+//                .entrySet().stream().max(Comparator.comparingLong(Map.Entry::getValue)).map(Map.Entry::getKey).orElse(null));
 
         List<Integer> list1 = new ArrayList<>(Arrays.asList(5, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4));
         List<Integer> newone = list1.stream().distinct().sorted((a, b) -> b - a).collect(Collectors.toList());
@@ -140,5 +140,9 @@ public class Main {
                 System.out.println("First non repeating character is " + sen.charAt(k));
             break;}
         }
+
+        students.stream().filter(st->st.isPassed())
+                .collect(Collectors.toMap(Student::getId,Student::getName))
+                .forEach((k,v)-> System.out.println(k+"->"+v));
     }
 }
