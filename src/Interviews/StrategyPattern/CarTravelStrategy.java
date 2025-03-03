@@ -1,4 +1,4 @@
-package StrategyPattern;
+package Interviews.StrategyPattern;
 
 public class CarTravelStrategy implements TravelStrategy {
     @Override

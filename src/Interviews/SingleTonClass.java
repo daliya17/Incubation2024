@@ -1,3 +1,5 @@
+package Interviews;
+
 public class SingleTonClass {
     private static SingleTonClass instance = null;
 

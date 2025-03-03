@@ -7,7 +7,7 @@ public class Address {
     private String zip;
 
     public Address( String city) {
-        this.street = "123 Main St";
+        this.street = "123 CoreJava.Oops.Main St";
         this.city = city;
         this.state = "state";
         this.zip = "43567";

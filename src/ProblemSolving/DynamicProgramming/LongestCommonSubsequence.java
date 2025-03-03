@@ -1,3 +1,5 @@
+package ProblemSolving.DynamicProgramming;
+
 public class LongestCommonSubsequence {
     public static void main(String[] args) {
         System.out.println(longestSubSequence("cbbd"));

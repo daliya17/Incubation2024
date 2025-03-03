@@ -1,3 +1,5 @@
+package Interviews;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class FindElementsAppearingOnce {
         List<Integer> setBitsArr = new ArrayList<>();
         List<Integer> unsetBitsArr = new ArrayList<>();
         int xorSetBits = 1, xorUnsetBits = 1;
-        if (arr.size() < 1)
+        if (arr.isEmpty())
             return ans;
         int xor = arr.get(0);
         for (int i = 1; i < arr.size(); i++) {

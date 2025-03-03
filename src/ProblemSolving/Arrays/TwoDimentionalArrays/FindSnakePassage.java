@@ -1,11 +1,13 @@
 package ProblemSolving.Arrays.TwoDimentionalArrays;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FindSnakePassage {
+
+
     public static void main(String[] args) {
-        char[][] board1 = new char[][]{{'+', '+', '+', '+', '+', '+', '+', '0', '0'},
+        char[][] board1 = new char[][]{
+                {'+', '+', '+', '+', '+', '+', '+', '0', '0'},
                 {'+', '+', '0', '0', '0', '0', '0', '+', '+'},
                 {'0', '0', '0', '0', '0', '+', '+', '0', '+'},
                 {'+', '+', '0', '+', '+', '+', '+', '0', '0'},
@@ -59,32 +61,81 @@ public class FindSnakePassage {
                 {'0', '0', '0', '0', '0', '0', '0', '+'},
                 {'+', '+', '+', '+', '+', '+', '0', '+'}};
         int[] start6_1 = {4, 0}; // Expected output = (1, 0)
+        int[] ans1 = findPassages(board1, start1_1);
+        System.out.println("row" + ans1[0]);
+        System.out.println("column" + ans1[1]);
+        int[] ans2 = findPassages(board1, start1_2);
+        System.out.println("row" + ans2[0]);
+        System.out.println("column" + ans2[1]);
+        int[] ans3 = findPassages(board1, start1_3);
+        System.out.println("row" + ans3[0]);
+        System.out.println("column" + ans3[1]);
+        int[] ans4 = findPassages(board1, start1_4);
+        System.out.println("row" + ans4[0]);
+        System.out.println("column" + ans4[1]);
+        int[] ans5 = findPassages(board2, start2_1);
+        System.out.println("row" + ans5[0]);
+        System.out.println("column" + ans5[1]);
+        int[] ans6 = findPassages(board2, start2_2);
+        System.out.println("row" + ans6[0]);
+        System.out.println("column" + ans6[1]);
+        int[] ans7 = findPassages(board3, start3_1);
+        System.out.println("row" + ans7[0]);
+        System.out.println("column" + ans7[1]);
+        int[] ans8 = findPassages(board4, start4_1);
+        System.out.println("row" + ans8[0]);
+        System.out.println("column" + ans8[1]);
+        int[] ans9 = findPassages(board5, start5_1);
+        System.out.println("row" + ans9[0]);
+        System.out.println("column" + ans9[1]);
+        int[] ans10 = findPassages(board6, start6_1);
+        System.out.println("row" + ans10[0]);
+        System.out.println("column" + ans10[1]);
     }
 
-    public static List<Integer> findPassages(char[][] board, int[] start) {
-        List<Integer> ans = new ArrayList<>();
-        passage(board, start[0], start[1]);
-        return ans;
+    public static int[] findPassages(char[][] board, int[] start) {
+        boolean[][] visited = new boolean[board.length][board[0].length];
+        // dfs(board, start[0], start[1], 0, visited);
+        int[] ans = bfs(board, start);
+        return new int[]{ans[0], ans[1]};
     }
 
-    public static int passage(char[][] board, int i, int j) {
-        if (i < 0 || j < 0 || i >= board.length || j >= board[0].length)
-            return 0;
-        if (board[i][j] == '+')
-            return -1;
-        int right = passage(board, i, j + 1);
-        int min = 0;
-        if (right > 0)
-            min = right;
-        int left = passage(board, i, j - 1);
-        if (left > 0)
-            min = Math.min(left, right);
-        int down = passage(board, i + 1, j);
-        if (down > 0)
-            min = Math.min(min, down);
-        int up = passage(board, i - 1, j);
-        if (up > 0)
-            min = Math.min(min, up);
-        return min;
+//    public static void dfs(char[][] board, int r, int c, int steps, boolean[][] visited) {
+//        if (r < 0 || r >= board.length || c < 0 || c >= board[0].length || board[r][c] == '+' || visited[r][c])
+//            return;
+//        if ((r == 0 || r == board.length - 1 || c == 0 || c == board[0].length) && steps > 0) {
+//            minSteps = Math.min(minSteps, steps);
+//            exitIndex[0] = r;
+//            exitIndex[1] = c;
+//        }
+//        visited[r][c] = true;
+//        dfs(board, r - 1, c, steps + 1, visited);
+//        dfs(board, r, c - 1, steps + 1, visited);
+//        dfs(board, r + 1, c, steps + 1, visited);
+//        dfs(board, r, c + 1, steps + 1, visited);
+//        visited[r][c] = false;
+//    }
+
+    public static int[] bfs(char[][] board, int[] start) {
+        int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        int rows = board.length, columns = board[0].length;
+        boolean[][] visited = new boolean[rows][columns];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{start[0], start[1], 0});
+        visited[start[0]][start[1]] = true;
+        while (!queue.isEmpty()) {
+            int[] cell = queue.poll();
+            int r = cell[0], c = cell[1], steps = cell[2];
+            if ((r == 0 || c == 0 || r == rows - 1 || c == columns - 1) && steps > 0)
+                return new int[]{r, c, steps};
+            for (int[] dir : directions) {
+                int newRow = r + dir[0], newCol = c + dir[1];
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < columns && board[newRow][newCol] == '0' && !visited[newRow][newCol]) {
+                    queue.offer(new int[]{newRow, newCol, steps + 1});
+                    visited[newRow][newCol] = true;
+                }
+            }
+        }
+        return new int[]{-1, -1, -1};
     }
 }

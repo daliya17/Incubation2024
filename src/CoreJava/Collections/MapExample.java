@@ -24,5 +24,8 @@ public class MapExample {
         linkedHashMap.put("Blue", 2);
         linkedHashMap.put("Green", 3);
         System.out.println("LinkedHashMap: " + linkedHashMap);
+        for(Map.Entry<String, Integer> entry: linkedHashMap.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
     }
 }

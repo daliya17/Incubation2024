@@ -1,4 +1,4 @@
-package StrategyPattern;
+package Interviews.StrategyPattern;
 
 public class TravelPlanService {
     public TravelPlanService() {
