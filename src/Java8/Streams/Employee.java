@@ -1,5 +1,10 @@
 package Java8.Streams;
 
+import lombok.Data;
+
+import java.util.List;
+
+@Data
 public class Employee {
     public String getName() {
         return name;
@@ -31,6 +36,10 @@ public class Employee {
     private String name;
     private String gender;
     private String account;
+
+    private List<Address> addressList;
+
+    private Department department;
 
     private Long salary;
 

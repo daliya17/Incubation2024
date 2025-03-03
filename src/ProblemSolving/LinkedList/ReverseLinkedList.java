@@ -21,6 +21,7 @@ public class ReverseLinkedList {
         return prev;
     }
 
+
     public static void printLinkedList(Node head) {
         Node temp = head;
         while (temp != null) {
