@@ -1,3 +1,5 @@
+package Interviews;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,3 +36,5 @@ public class NumberOfMoves {
         }
     }
 }
+
+// sort the array and if at a position value is same as original value, increment no of moves

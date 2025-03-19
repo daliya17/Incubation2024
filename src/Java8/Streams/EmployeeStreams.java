@@ -2,7 +2,10 @@ package Java8.Streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class EmployeeStreams {
     public static void main(String[] args) {
@@ -28,8 +31,16 @@ public class EmployeeStreams {
         employee4.setDepartment(employee2.getDepartment());
         employee5.setDepartment(employee1.getDepartment());
 
-      //  System.out.println(employees.stream().flatMap(e -> e.getAddressList().stream()).toList());
+        //  System.out.println(employees.stream().flatMap(e -> e.getAddressList().stream()).toList());
 
-        System.out.println(employees.stream().collect(Collectors.groupingBy(e->e.getDepartment())));
+        Map<Integer, List<Employee>> map = employees.stream().collect(Collectors.groupingBy(e -> e.getDepartment().getId()));
+        for(Map.Entry<Integer, List<Employee>> entry:map.entrySet()){
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+
+        String s = "newString";
+        System.out.println(s.chars().mapToObj(c->(char)c).collect(Collectors.counting()));
+        System.out.println(Stream.of(s).mapToInt(String::length).findFirst().getAsInt());
+        System.out.println(IntStream.of(s.length()).findFirst().getAsInt());
     }
 }
